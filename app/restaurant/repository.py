@@ -13,30 +13,9 @@ from app.restaurant.schemas import (Menu_In,
 from sqlalchemy import select, delete, cast, Date, update
 from restaurant import LIMIT_OF_TABLE, LIMIT_OF_GUEST_ON_TABLE
 from typing import List
+from app.DBmanager import get_things
 
 from restaurant.schemas import Order_Table_in, Table_config_out
-
-
-async def add_food_to_menu(menu: Menu_In) -> None:
-    async with session_factory() as session:
-        try:
-            menu_dict = menu.model_dump()
-            print(menu_dict, "refresh token dict")
-            session.add(Menu(**menu_dict))
-            await session.flush()
-            await session.commit()
-        except Exception as e:
-            print("we have exception", e)
-
-async def delete_food_from_menu(menu_id: int) -> None:
-    async with session_factory() as session:
-        try:
-            await session.execute(delete(Menu).filter_by(id = menu_id))
-            await session.commit()
-        except Exception as e:
-            print(e.__class__, e)
-            print("we have exception", e)
-
 
 async def change_food_in_menu(menu_info:Menu_info,
                               menu_change: Menu_info) -> None:
@@ -58,33 +37,9 @@ async def change_food_in_menu(menu_info:Menu_info,
             raise Exception(f"there are no food {menu_info.model_dump()}")
 
 async def get_all_menus() -> List[dict]:
-    menus = await get_menu()
+    menus = await get_things(Menu_out, Menu)
     menus_ = [menu.model_dump() for menu in menus]
     return menus_
-
-async def get_menu(**menu_data) -> List[Menu_out]:
-    async with session_factory() as session:
-        try:
-            querry = select(Menu).filter_by(**menu_data)
-            result = await session.execute(querry)
-            menu_info = result.scalars().all()
-
-            menus = list()
-            for menu in menu_info:
-                menus.append(Menu_out.model_validate(menu))
-            return menus
-        except Exception as e:
-            print(e.__class__, e)
-
-async def add_table(guest_limit:int = LIMIT_OF_GUEST_ON_TABLE)->None:
-    async with session_factory() as session:
-        try:
-            table = Table_config(max_guest_amount=guest_limit)
-            session.add(Table(**table.model_dump()))
-            await session.flush()
-            await session.commit()
-        except Exception as e:
-            print(e.__class__, e)
 
 async def add_tables(table_quantity: int = LIMIT_OF_TABLE,
                      guest_limit:int = LIMIT_OF_GUEST_ON_TABLE)->None:

@@ -13,6 +13,10 @@ class User(BaseModel):
     email_address: str = Field(min_length=5)
     model_config = ConfigDict(from_attributes=True)
 
+class User_add_schema(User):
+    hashed_password: bytes
+    user_role: Roles
+
 class User_ORM_(User):
     user_role: Roles
     id: int

@@ -4,14 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="258873d0-3777-4430-9050-9a984b3beb54" name="Changes" comment="third_commit">
+    <list default="true" id="258873d0-3777-4430-9050-9a984b3beb54" name="Changes" comment="fourth_commit">
       <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/image/menu/pelmeni.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/DBmanager.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/DBmanager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/authorization/repository.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/authorization/repository.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/authorization/router.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/authorization/router.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/authorization/schemas.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/authorization/schemas.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/pages/router.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/pages/router.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/pages/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/pages/utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/restaurant/repository.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/restaurant/repository.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/restaurant/router.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/restaurant/router.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/css/auth/register_page.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/css/auth/register_page.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/js/auth/register_page.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/js/auth/register_page.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/auth/register_page.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/auth/register_page.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/restaurant/schemas.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/restaurant/schemas.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/utils.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -261,7 +266,15 @@
       <option name="project" value="LOCAL" />
       <updated>1736106938415</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="fourth_commit">
+      <option name="closed" value="true" />
+      <created>1736107779628</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1736107779628</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -282,6 +295,7 @@
     <MESSAGE value="first_commit" />
     <MESSAGE value="second_commit" />
     <MESSAGE value="third_commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="third_commit" />
+    <MESSAGE value="fourth_commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="fourth_commit" />
   </component>
 </project>

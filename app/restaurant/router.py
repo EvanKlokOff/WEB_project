@@ -1,4 +1,6 @@
 from fastapi import APIRouter, Request, Depends, HTTPException, status
+
+import DBmanager
 import app.restaurant.repository as rest_rep
 import app.authorization.repository as auth_rep
 from app.pages.utils import send_page_with_context, send_page
@@ -12,6 +14,9 @@ from app.restaurant.schemas import (
                                     User_Tables_association_info)
 from app.restaurant.utils import store_image_in,delete_image_in
 from app.restaurant.schemas import Order_Table, Order_Table_in
+import app.DBmanager
+from app.restaurant.models import Menu
+
 
 router = APIRouter(prefix="/restaurant",
                    tags=["Restaurant"]
@@ -50,8 +55,7 @@ async def add_new_menu(menu: Menu_In_Base_64):
         dict_to_add = menu.model_dump()
         del dict_to_add["food_image"]
         menu_to_add = Menu_In(**dict_to_add, food_photo_path=file_path)
-        await rest_rep.add_food_to_menu(menu_to_add)
-
+        await DBmanager.add_thing(menu_to_add, Menu)
     except Exception as e:
         print(e.__class__, e)
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="something go bad")
@@ -60,7 +64,7 @@ async def add_new_menu(menu: Menu_In_Base_64):
 async def delete_menu(menu_info: Menu_info):
     try:
         delete_image_in(menu_info.food_photo_path)
-        await rest_rep.delete_food_from_menu(menu_info.id)
+        await DBmanager.delete_thing(menu_info, Menu)
     except Exception as e:
         print(e.__class__, e)
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="something go bad")

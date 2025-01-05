@@ -10,8 +10,7 @@ def send_page(page_name:str, request: Request) -> Any:
         return templates.TemplateResponse(name=page_name, context={'request': request})
     except Exception as e:
         print(e.__class__, e)
-        return templates.TemplateResponse(name="error_page/error_page.html", context={'request': request})
-
+        raise e
 
 def send_page_with_context(page_name:str,
                            request: Request,
@@ -24,17 +23,20 @@ def send_page_with_context(page_name:str,
                                           context=contex)
     except Exception as e:
         print(e.__class__, e)
-        return templates.TemplateResponse(name="error_page/error_page.html", context={'request': request})
-
+        raise e
 def send_page_with_context_and_status_code(page_name,
                                            request:Request,
                                            page_context:dict,
                                            status_code:int
                                            ):
-    contex = {'request': request}
-    contex.update(**page_context)
-    return templates.TemplateResponse(
-        page_name,
-        context=contex,
-        status_code=status_code
-    )
+    try:
+        contex = {'request': request}
+        contex.update(**page_context)
+        return templates.TemplateResponse(
+            page_name,
+            context=contex,
+            status_code=status_code
+        )
+    except Exception as e:
+        print(e.__class__, e)
+        raise e

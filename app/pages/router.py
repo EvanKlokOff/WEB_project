@@ -13,9 +13,3 @@ async def root(request: Request):
         return utils.send_page()
     except:
         return utils.send_page("restaurant/restaurant_main_page.html", request)
-#
-# @router.get('/{page_name:path}', status_code=status.HTTP_200_OK)
-# async def send_page(request: Request,
-#                     page_name: str
-#                     ):
-#     return utils.send_page(page_name, request)

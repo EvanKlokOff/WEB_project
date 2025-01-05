@@ -30,7 +30,7 @@ class Menu_In_Base_64_info(BaseModel):
 
     @model_validator(mode='after')
     def not_null_field(self) -> Self:
-        if not (self.food_name or self.food_cost or self.food_description or self.food_type or self.food_image):
+        if not any(self.__dict__.values()):
             raise ValueError("Three fields are None")
         return self
 
@@ -50,6 +50,7 @@ class Menu_In(BaseModel):
     food_photo_path: str
     model_config = ConfigDict(from_attributes=True)
 
+
 class Menu_info(BaseModel):
     id: int|None = Field(None)
     food_name: str|None = Field(None)
@@ -57,6 +58,12 @@ class Menu_info(BaseModel):
     food_description: str | None = Field(None)
     food_type: food_types|None = Field(None)
     food_photo_path: str|None = Field(None)
+
+    @model_validator(mode='after')
+    def not_null_field(self) -> Self:
+        if not any(self.__dict__.values()):
+            raise ValueError("Three fields are None")
+        return self
 
 class Menu_out(Menu_In):
     id: int

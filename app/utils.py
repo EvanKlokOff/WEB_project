@@ -2,7 +2,6 @@ from contextlib import asynccontextmanager
 from app.DBmanager import Base, engine
 from app.restaurant.models import Menu, Table
 from app.authorization.models import Users, Session, User_Tables_association
-from app.authorization.repository import add_new_user
 from app.authorization.schemas import User_API_in
 from app.authorization.roles import Roles
 from fastapi import FastAPI
@@ -104,9 +103,6 @@ async def lifespan_(app: FastAPI):
     # await rep.add_food_to_menu(black_tea)
     #
     # await add_tables()
-    #
-    # user = User_API_in(user_name='ivan_Klokov', email_address='ivan_krut@mail.ru', password='123456789', user_role=Roles.ADMIN)
-    # await add_new_user(user)
 
     yield
     # async with engine.begin() as conn:

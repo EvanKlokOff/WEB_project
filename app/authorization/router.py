@@ -5,7 +5,10 @@ from fastapi import (
      status,
      Request
      )
+
 from fastapi.params import Depends
+
+import DBmanager
 import app
 from app.authorization import USER_ACCESS_TOKEN, USER_REFRESH_TOKEN
 
@@ -15,7 +18,8 @@ from app.authorization.utils import (
      authenticate_user,
      create_access_token,
      create_refresh_token,
-     authenticate_tokens
+     authenticate_tokens,
+     hash_password
      )
 
 import app.authorization.repository as rep
@@ -23,9 +27,12 @@ import app.authorization.repository as rep
 from app.authorization.schemas import (
     User_API_in,
     User_ORM_,
-    User_info
+    User_info,
+    User_add_schema
     )
+from app.authorization.models import Users
 from pages.utils import send_page
+import app.DBmanager
 
 router = APIRouter(
     prefix='/auth',
@@ -46,7 +53,12 @@ async def register_user(user: User_API_in):
                                 status_code=status.HTTP_403_FORBIDDEN
                                 ,detail=app.this_user_already_exist
                                 )
-        await rep.add_new_user(user)
+        user_dict = user.model_dump()
+        user_dict.update(
+            hashed_password=hash_password(user.password)
+        )
+        del user_dict["password"]
+        await DBmanager.add_thing(User_add_schema(**user_dict), Users)
     except Exception as e:
         raise e
 
@@ -70,11 +82,6 @@ async def login_user(response: Response, user: User_ORM_ = Depends(authenticate_
                             )
         return user
     except ValueError:
-        raise HTTPException(
-            status_code=status.HTTP_403_INTERNAL_SERVER_ERROR
-            , detail=app.wrong_password_or_login
-        )
-    except User_doesnt_exist:
         raise HTTPException(
             status_code=status.HTTP_403_INTERNAL_SERVER_ERROR
             , detail=app.wrong_password_or_login
@@ -124,7 +131,7 @@ async def delete_user(
         user_info: User_info
 ):
     try:
-        await rep.delete_user(user_info)
+        await delete_thing(user_info, Users)
     except Exception as e:
         print(e.__class__, e)
         raise HTTPException(
