@@ -4,78 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="258873d0-3777-4430-9050-9a984b3beb54" name="Changes" comment="">
+    <list default="true" id="258873d0-3777-4430-9050-9a984b3beb54" name="Changes" comment="first_commit">
       <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/pythonProject.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/README" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/DBmanager.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/authorization/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/authorization/config.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/authorization/execptions.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/authorization/models.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/authorization/repository.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/authorization/roles.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/authorization/router.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/authorization/schemas.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/authorization/utils.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/config.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/pages/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/pages/router.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/pages/utils.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/restaurant/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/restaurant/food_type.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/restaurant/models.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/restaurant/repository.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/restaurant/router.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/restaurant/schemas.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/restaurant/utils.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/css/auth/enter_page.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/css/auth/login_page.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/css/auth/register_page.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/css/error_page.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/css/restaurant/admin_panel.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/css/restaurant/book_table.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/css/restaurant/menu.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/css/restaurant/restaraunt_main_page.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/css/restaurant/start_page.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/image/icon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/image/menu/Olivier_salad.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/image/menu/black_tea.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/image/menu/bliny.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/image/menu/grechka.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/image/menu/medovik.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/image/menu/pivo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/image/menu/plov.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/image/menu/sashlik.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/image/menu/solyanka.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/image/menu/uha.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/js/auth/enter_page.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/js/auth/login_page.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/js/auth/register_page.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/js/restaurant/admin_panel.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/js/restaurant/book_table.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/js/restaurant/menu.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/js/restaurant/restaurant_main_page.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/js/restaurant/restaurant_main_page_admin.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/js/restaurant/start_page.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/templates/auth/enter_page.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/templates/auth/login_page.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/templates/auth/register_page.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/templates/error_page/error_page.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/templates/restaurant/admin_panel.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/templates/restaurant/book_table.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/templates/restaurant/menu.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/templates/restaurant/restaurant_main_page.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/templates/restaurant/restaurant_main_page_admin.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/templates/restaurant/start_page.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/utils.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/authorization/repository.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/authorization/repository.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/authorization/router.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/authorization/router.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/authorization/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/authorization/utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/pages/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/pages/utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/restaurant/router.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/restaurant/router.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/css/auth/login_page.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/css/auth/login_page.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/css/error_page.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/css/error_page.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/js/auth/login_page.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/js/auth/login_page.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/auth/login_page.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/auth/login_page.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/error_page/error_page.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/error_page/error_page.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,6 +36,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;EvanKlokOff&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/EvanKlokOff/WEB_project.git&quot;,
+    &quot;accountId&quot;: &quot;127440aa-0f81-4106-9ea7-918e524ba4ec&quot;
+  }
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
 }</component>
@@ -126,11 +81,11 @@
       <recent name="$PROJECT_DIR$" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app" />
       <recent name="$PROJECT_DIR$/app/static/css" />
       <recent name="$PROJECT_DIR$/app/static/js/restaurant" />
       <recent name="$PROJECT_DIR$/app/static/css/restaurant_css" />
       <recent name="$PROJECT_DIR$/app/templates/restaurant_page" />
-      <recent name="$PROJECT_DIR$/app/templates/error_page" />
     </key>
   </component>
   <component name="RunManager" selected="Python.main">
@@ -280,6 +235,15 @@
       <option name="presentableId" value="Default" />
       <updated>1731756386329</updated>
     </task>
+    <task id="LOCAL-00001" summary="first_commit">
+      <option name="closed" value="true" />
+      <created>1736101234703</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1736101234703</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -295,5 +259,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="first_commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="first_commit" />
   </component>
 </project>

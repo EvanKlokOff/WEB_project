@@ -56,3 +56,19 @@ async function login(event){
         errorMessage.textContent = 'Произошла ошибка. Пожалуйста, попробуйте снова.';
     }
 };
+
+async function go_to_main(){
+    window.location.href = 'http://127.0.0.1:8000/restaurant/restaurant_main_page.html';
+};
+
+async function go_to_menu(){
+    window.location.href = 'http://127.0.0.1:8000/restaurant/menu.html';
+};
+
+async function go_to_register(){
+    window.location.href = 'http://127.0.0.1:8000/auth/register_page.html';
+};
+
+async function go_to_booking(){
+    window.location.href = 'http://127.0.0.1:8000/restaurant/book_table.html';
+};

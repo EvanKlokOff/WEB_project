@@ -4,7 +4,7 @@ from fastapi import (
     Request
 )
 from fastapi.params import Depends
-
+import app
 from app.authorization import USER_ACCESS_TOKEN
 from app.authorization.config import auth_jwt, jwt_parametres
 from datetime import (
@@ -24,11 +24,7 @@ import bcrypt
 import jwt
 
 from authorization import USER_REFRESH_TOKEN
-from app.authorization.schemas import (
-    Access_token,
-    Refresh_token,
-    JWT_tokens
-)
+from app.authorization.schemas import JWT_tokens
 
 JWT_TOKEN_TYPE="type"
 JWT_ACCESS_TOKEN="access"
@@ -129,13 +125,13 @@ async def get_current_user(tokens: JWT_tokens = Depends(get_tokens)) -> User_ORM
         return await authenticate_tokens(tokens)
     except Exception as e:
         print(e.__class__, e)
-        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="user access token is invalid")
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail=app.token_is_invalid)
 
     user_id = int(payload.get("sub"))
     user = await rep.get_user_by_property(id = user_id)
 
     if not user:
-        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail='user_id not found')
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail=app.token_is_invalid)
 
     return user
 
@@ -143,12 +139,12 @@ async def authenticate_tokens(tokens:JWT_tokens = Depends(get_tokens)) -> User_O
     try:
         payload = decode_jwt(tokens.refresh_token)
     except:
-        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Token is invalid")
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail=app.token_is_invalid)
 
     user_id = int(payload.get("sub"))
     token = await rep.get_refresh_token_by_property(user_id=user_id)
     if (not token) or (not user_id) or (token.refresh_token != tokens.refresh_token):
-        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail='user_id not found')
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail=app.token_is_invalid)
 
     return await rep.get_user_by_property(id=user_id)
 
@@ -157,9 +153,9 @@ async def get_admin(user: User_ORM_ = Depends(get_current_user)) -> User_ORM_:
     try:
         if user.user_role is Roles.ADMIN:
             return user
-        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="you don't have admin rights")
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail=app.u_have_not_enough_rights)
     except:
-        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="server error")
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=app.token_is_invalid)
 
 async def authenticate_user(user: User_API_in) -> None | User_ORM_:
     user_ = await rep.get_user_by_email_and_name(user)
@@ -169,12 +165,12 @@ async def authenticate_user(user: User_API_in) -> None | User_ORM_:
         else:
             raise HTTPException(
                 status_code=status.HTTP_403_FORBIDDEN,
-                detail='wrong password'
+                detail=app.wrong_password_or_login
             )
     else:
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
-            detail='this user doesnt exist'
+            detail=app.wrong_password_or_login
         )
 
 if __name__ == "__main__":

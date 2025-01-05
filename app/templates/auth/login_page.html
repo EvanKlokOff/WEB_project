@@ -1,36 +1,58 @@
-<html>
+<!DOCTYPE html>
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="Cache-Control" content="no-cache">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Вход</title>
     <link rel="icon" href="/static/image/icon.png">
     <link rel="stylesheet" type="text/css" href="/static/css/auth/login_page.css">
 </head>
 <body>
-<div class="auth-container">
-    <div class="logo">Вход</div>
-
-    <form id="loginForm">
-        <div class="form-group">
-            <label for="email">Электронная почта</label>
-            <input type="email" id="email" name="email" required>
+    <!-- Шапка -->
+    <header>
+        <h1>Харчевня Басуха</h1>
+        <p>Добро пожаловать в уютный уголок традиционной кухни!</p>
+        <div class="header-buttons">
+            <button type="submit" class="btn btn-header" onclick="go_to_main()">Наглавную</button>
+            <button type="submit" class="btn btn-header" onclick="go_to_menu()">Меню</button>
+            <button type="submit" class="btn btn-header" onclick="go_to_register()">Регистрация</button>
+            <button type="submit" class="btn btn-header" onclick="go_to_booking()">Забронировать</button>
         </div>
+    </header>
 
-        <div class="form-group">
-            <label for="email">Имя пользователя</label>
-            <input type="text" id="user_name" name="user_name" required>
+    <!-- Форма входа -->
+    <section id="login">
+        <h2>Вход</h2>
+        <div class="auth-container">
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="email">Электронная почта</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="user_name">Имя пользователя</label>
+                    <input type="text" id="user_name" name="user_name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Пароль</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+
+                <div id="errorMessage" class="error-message"></div>
+
+                <button type="submit" class="btn btn-login" onclick="login(event)">Войти</button>
+            </form>
         </div>
+    </section>
 
-        <div class="form-group">
-            <label for="password">Пароль</label>
-            <input type="password" id="password" name="password" required>
-        </div>
+    <!-- Подвал -->
+    <footer>
+        <p>&copy; 2024-2025 Харчевня Басуха. Все права защищены.</p>
+    </footer>
 
-        <div id="errorMessage" class="error-message"></div>
-
-        <button type="submit" class="btn btn-login" onclick="login(event)">Войти</button>
-    </form>
-</div>
-<script src="/static/js/auth/login_page.js"></script>
+    <script src="/static/js/auth/login_page.js"></script>
 </body>
 </html>

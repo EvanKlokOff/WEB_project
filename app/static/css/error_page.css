@@ -1,52 +1,30 @@
 body {
-    font-family: 'Arial', sans-serif;
-    background: linear-gradient(45deg, #3494E6, #EC6EAD);
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    margin: 0;
 }
 
 .error-container {
-    background-color: white;
-    border-radius: 15px;
-    padding: 40px;
-    box-shadow: 0 15px 25px rgba(0,0,0,0.1);
-    width: 350px;
     text-align: center;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .error-message {
-    color: #333;
-    line-height: 1.6;
-    margin-bottom: 20px;
+    font-size: 24px;
     font-weight: bold;
-}
-
-.btn {
-    width: 100%;
-    padding: 12px;
-    margin: 10px 0;
-    border: none;
-    border-radius: 25px;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: all 0.3s ease;
-}
-
-.btn-return {
-    background-color: #EC6EAD;
-    color: white;
-}
-
-.btn:hover {
-    opacity: 0.8;
-    transform: scale(1.05);
+    color: #d9534f;
 }
 
 .error-details {
-    color: #666;
-    font-size: 0.9rem;
-    margin-top: 15px;
+    font-size: 16px;
+    color: #333;
+    margin-top: 10px;
 }

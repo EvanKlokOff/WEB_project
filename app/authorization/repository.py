@@ -9,8 +9,6 @@ from app.authorization.models import (Users,
 from sqlalchemy import (select,
                         delete)
 import app.authorization.utils as utils
-import app.authorization.execptions  as execptions
-import sqlalchemy.exc as orm_execptions
 from datetime import datetime
 from typing import List
 
@@ -27,7 +25,7 @@ async def get_refresh_token_by_property(**kwargs) -> Refresh_token | None:
                 except Exception as e:
                     print(e.__class__)
         except Exception as e:
-            print(e)
+            print(e.__class__, e)
             return None
 
 async def add_refresh_token_by(token: str|bytes) -> None:
@@ -46,7 +44,9 @@ async def add_refresh_token_by(token: str|bytes) -> None:
             await session.flush()
             await session.commit()
         except Exception as e:
-            print("we have exception", e)
+            print("we have exception", e.__class__, e)
+            raise e
+
 
 async def delete_refresh_token_by_property(**kwargs) -> None:
     async with session_factory() as session:
@@ -55,7 +55,8 @@ async def delete_refresh_token_by_property(**kwargs) -> None:
             await session.execute(stmt)
             await session.commit()
         except Exception as e:
-            print(e)
+            print(e.__class__, e)
+            raise e
 
 async def get_user_by_property(**kwargs) -> User_ORM_out | None:
     async with session_factory() as session:
@@ -69,7 +70,7 @@ async def get_user_by_property(**kwargs) -> User_ORM_out | None:
                 except Exception as e:
                     print(e.__class__)
         except Exception as e:
-            print(e, "ошибка при выборке")
+            print(e.__class__, e, "ошибка при выборке")
             return None
 
 async def get_all_users() -> List[dict]:
@@ -89,12 +90,10 @@ async def get_users_by_property(**kwargs) -> List[User_ORM_]:
             return users
         except Exception as e:
             print(e.__class__, e)
+            raise e
 
 async def get_user_by_email_and_name(user: User_API_in) -> User_ORM_out | None:
-    return await get_user_by_property(
-                                    user_name = user.user_name
-                                    ,email_address = user.email_address
-                                    )
+    return await get_user_by_property(user_name = user.user_name,email_address = user.email_address)
 
 async def change_user(user_info: User_info,
                       new_data:User_info) -> None:
@@ -119,7 +118,7 @@ async def change_user(user_info: User_info,
                     setattr(obj, key, value)
             await session.commit()
         else:
-            raise Exception(f"there are no user {user_info.model_dump()}")
+            raise ValueError(f"there are no user {user_info.model_dump()}")
 
 async def add_new_user(user: User_API_in) -> None:
     async with session_factory() as session:
@@ -134,9 +133,8 @@ async def add_new_user(user: User_API_in) -> None:
             await session.flush()
             await session.commit()
         except Exception as e:
-            print(e)
-            if e == orm_execptions.IntegrityError:
-                raise execptions.Is_existing_user(user_dict.user_name, user_dict.email_address)
+            print(e.__class__, e)
+            raise e
 
 async def delete_user(user: User_info):
     async with session_factory() as session:
@@ -147,3 +145,4 @@ async def delete_user(user: User_info):
             await session.commit()
         except Exception as e:
             print(e.__class__, e)
+            raise e

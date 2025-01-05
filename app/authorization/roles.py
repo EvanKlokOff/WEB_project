@@ -1,4 +1,3 @@
-from datetime import datetime, timezone
 from enum import Enum
 
 class Roles(str, Enum):
@@ -11,6 +10,3 @@ class Roles(str, Enum):
             return Roles.__members__[s]
         except:
             raise ValueError("invalid string")
-
-if __name__ == "__main__":
-    pass

@@ -92,8 +92,12 @@ async def change_menu(menu_info:Menu_info,
 #для авторизованных пользователей
 @router.get("/book_table.html", status_code=status.HTTP_200_OK, dependencies=[Depends(get_current_user)])
 async def show_book_page(request: Request):
-    return send_page('restaurant/book_table.html', request)
-
+    try:
+        return send_page('restaurant/book_table.html', request)
+    except HTTPException as http_e:
+        print(http_e.__class__, http_e, http_e.detail, http_e.args)
+    except Exception as e:
+        print(e.__class__, e)
 
 #метод для админа
 @router.get("/admin_panel.html", dependencies=[Depends(get_admin)])
