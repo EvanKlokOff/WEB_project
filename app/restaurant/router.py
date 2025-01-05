@@ -41,20 +41,15 @@ async def get_all_menu_html(request: Request,
                             menus: [dict] = Depends(rest_rep.get_all_menus),
                             ):
     page_context = {"menus": menus}
-    return send_page_with_context("restaurant/menu.html",
-                                  request,
-                                  page_context)
+    return send_page_with_context("restaurant/menu.html", request, page_context)
 
 @router.post('/add_new_menu', status_code=status.HTTP_202_ACCEPTED, dependencies=[Depends(get_admin)])
 async def add_new_menu(menu: Menu_In_Base_64):
     try:
         file_path = store_image_in(menu.food_image, menu.food_name)
-
-        menu_to_add = Menu_In(food_name=menu.food_name,
-                              food_cost=menu.food_cost,
-                              food_description=menu.food_description,
-                              food_type=menu.food_type,
-                              food_photo_path=file_path)
+        dict_to_add = menu.model_dump()
+        del dict_to_add["food_image"]
+        menu_to_add = Menu_In(**dict_to_add, food_photo_path=file_path)
         await rest_rep.add_food_to_menu(menu_to_add)
 
     except Exception as e:

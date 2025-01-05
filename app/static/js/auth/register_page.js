@@ -1,3 +1,18 @@
+async function go_to_main(){
+    window.location.href = 'http://127.0.0.1:8000/restaurant/restaurant_main_page.html';
+};
+
+async function go_to_menu(){
+    window.location.href = 'http://127.0.0.1:8000/restaurant/menu.html';
+};
+function go_to_login() {
+    window.location.href = "'http://127.0.0.1:8000/auth/login_page.html";
+}
+
+async function go_to_booking(){
+    window.location.href = 'http://127.0.0.1:8000/restaurant/book_table.html';
+};
+
 async function regFunction(event){
     event.preventDefault()
     alert('скрипт запущен');

@@ -1,37 +1,58 @@
-<html>
+<!DOCTYPE html>
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Регистрация</title>
     <meta http-equiv="Cache-Control" content="no-cache">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация</title>
     <link rel="icon" href="/static/image/icon.png">
     <link rel="stylesheet" type="text/css" href="/static/css/auth/register_page.css">
 </head>
 <body>
-<div class="register-container">
-    <div class="logo">Регистрация</div>
-
-    <form id="registrationForm">
-        <div class="form-group">
-            <label for="username">Имя пользователя</label>
-            <input type="text" id="username" name="username" required>
+    <!-- Шапка -->
+    <header>
+        <h1>Харчевня Басуха</h1>
+        <p>Добро пожаловать в уютный уголок традиционной кухни!</p>
+        <div class="header-buttons">
+            <button type="submit" class="btn btn-header" onclick="go_to_main()">На главную</button>
+            <button type="submit" class="btn btn-header" onclick="go_to_menu()">Меню</button>
+            <button type="submit" class="btn btn-header" onclick="go_to_login()">Вход</button>
+            <button type="submit" class="btn btn-header" onclick="go_to_booking()">Забронировать</button>
         </div>
+    </header>
 
-        <div class="form-group">
-            <label for="email">Адрес Электронной почты</label>
-            <input type="email" id="email" name="email" required>
+    <!-- Форма регистрации -->
+    <section id="register">
+        <h2>Регистрация</h2>
+        <div class="auth-container">
+            <form id="registrationForm">
+                <div class="form-group">
+                    <label for="username">Имя пользователя</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Адрес электронной почты</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Пароль</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+
+                <div id="errorMessage" class="error-message"></div>
+
+                <button type="submit" class="btn btn-register" onclick="regFunction(event)">Зарегистрироваться</button>
+            </form>
         </div>
+    </section>
 
-        <div class="form-group">
-            <label for="password">Пароль</label>
-            <input type="password" id="password" name="password" required>
-        </div>
+    <!-- Подвал -->
+    <footer>
+        <p>&copy; 2024-2025 Харчевня Басуха. Все права защищены.</p>
+    </footer>
 
-        <div id="errorMessage" class="error"></div>
-
-        <button type="submit" class="btn btn-register" onclick="regFunction(event)">Зарегистрироваться</button>
-    </form>
-</div>
-
-<script src="/static/js/auth/register_page.js"></script>
+    <script src="/static/js/auth/register_page.js"></script>
 </body>
 </html>
