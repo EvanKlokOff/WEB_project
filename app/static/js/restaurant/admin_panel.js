@@ -11,7 +11,7 @@ async function add_new_menu(event) {
     const mealDescription = document.getElementById('meal_description').value;
     const mealCost = document.getElementById('meal_cost').value;
     const mealType = document.getElementById('meal_type').value;
-    const mealImage = document.getElementById('meal-image').files[0];
+    const mealImage = document.getElementById('meal_image').files[0];
     // Проверяем, что все поля заполнены
     if (!mealName || !mealDescription || !mealCost || !mealType || !mealImage) {
         alert('Пожалуйста, заполните все поля и выберите изображение.');
@@ -44,17 +44,13 @@ async function add_new_menu(event) {
 
             // Проверяем ответ сервера
             if (response.ok) {
-                const result = await response.json();
                 alert('Блюдо успешно добавлено!');
-                console.log('Ответ сервера:', result);
+                location.reload()
             } else {
-                const error = await response.json();
-                alert('Ошибка при добавлении блюда: ' + error.message);
-                console.error('Ошибка:', error);
+                alert('Ошибка при добавлении блюда:');
             }
         } catch (error) {
             alert('Произошла ошибка при отправке запроса.');
-            console.error('Ошибка:', error);
         }
     };
 
@@ -124,17 +120,13 @@ async function change_menu(event) {
 
             // Проверяем ответ сервера
             if (response.ok) {
-                const result = await response.json();
                 alert('Блюдо успешно добавлено!');
-                console.log('Ответ сервера:', result);
+                location.reload()
             } else {
-                const error = await response.json();
-                alert('Ошибка при добавлении блюда: ' + error.message);
-                console.error('Ошибка:', error);
+                alert('Ошибка при добавлении блюда');
             }
         } catch (error) {
             alert('Произошла ошибка при отправке запроса.');
-            console.error('Ошибка:', error);
         }
     };
 
@@ -170,15 +162,13 @@ async function delete_menu(event){
 
         // Проверяем ответ сервера
         if (response.ok) {
-            const result = await response.json();
             alert('Блюдо успешно удалено!');
+            location.reload()
         } else {
-            const error = await response.json();
-            alert('Ошибка при удалении блюда: ' + error.message);
+            alert('Ошибка при удалении блюда');
         }
     }catch (error) {
         alert('Произошла ошибка при отправке запроса.');
-        console.error('Ошибка:', error);
     }
 
 }
@@ -216,15 +206,13 @@ async function add_user(event){
 
         // Проверяем ответ сервера
         if (response.ok) {
-            const result = await response.json();
             alert('Новый пользователь добавлен');
+            location.reload()
         } else {
-            const error = await response.json();
-            alert('Ошибка при добавлении пользователя: ' + error.message);
+            alert('Ошибка при добавлении пользователя');
         }
     }catch (error) {
         alert('Произошла ошибка при отправке запроса.');
-        console.error('Ошибка:', error);
     }
 
 }
@@ -275,15 +263,13 @@ async function change_user(event){
 
         // Проверяем ответ сервера
         if (response.ok) {
-            const result = await response.json();
             alert('пользователь успешно изменён!');
+            location.reload()
         } else {
-            const error = await response.json();
-            alert('Ошибка при изменении пользователя: ' + error.message);
+            alert('Ошибка при изменении пользователя');
         }
     }catch (error) {
         alert('Произошла ошибка при отправке запроса.');
-        console.error('Ошибка:', error);
     }    
 
 }
@@ -312,15 +298,13 @@ async function delete_user(event){
 
         // Проверяем ответ сервера
         if (response.ok) {
-            const result = await response.json();
             alert('Пользователь успешно удалён!');
+            location.reload()
         } else {
-            const error = await response.json();
-            alert('Ошибка при удалении пользователя: ' + error.message);
+            alert('Ошибка при удалении пользователя');
         }
     }catch (error) {
         alert('Произошла ошибка при отправке запроса.');
-        console.error('Ошибка:', error);
     }
 }
 
@@ -369,16 +353,15 @@ async function book_table(event){
         });
 
         if (response.ok) {
-            //Registration successful
             alert('Ваш столик забронирован!');
+            location.reload()
         } else {
             // Handle registration errors
-            const errorData = await response.json();
-            errorMessage.textContent = errorData.message || 'Ошибка регистрации';
+            alert('Ошибка при бронировании столика!');
         }
     }catch (error)
     {
-        errorMessage.textContent = error;
+        alert('Произошла ошибка при отправке запроса.');
     }
 
 }
@@ -414,15 +397,13 @@ async function free_table(event){
 
         // Проверяем ответ сервера
         if (response.ok) {
-            const result = await response.json();
             alert('Столик освобожден!');
+            location.reload()
         } else {
-            const error = await response.json();
-            alert('Ошибка при освобождении столика' + error.message);
+            alert('Ошибка при освобождении столика');
         }
     }catch (error) {
         alert('Произошла ошибка при отправке запроса.');
-        console.error('Ошибка:', error);
     }   
 
 }
@@ -478,15 +459,13 @@ async function change_booking_table(event){
 
         // Проверяем ответ сервера
         if (response.ok) {
-            const result = await response.json();
             alert('Бронирование изменено!');
+            location.reload()
         } else {
-            const error = await response.json();
-            alert('Ошибка при изменении бронирования: ' + error.message);
+            alert('Ошибка при изменении бронирования');
         }
     } catch (error) {
         alert('Произошла ошибка при отправке запроса.');
-        console.error('Ошибка:', error);
     }
 }
 

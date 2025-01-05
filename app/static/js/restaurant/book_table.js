@@ -50,7 +50,7 @@ async function book_table(event){
         if (response.ok) {
             //Registration successful
             alert('Ваш столик забронирован!');
-            window.location.href = 'http://127.0.0.1:8000/restaurant/templates/restaurant/restaurant_main_page.html';
+            window.location.href = 'http://127.0.0.1:8000/restaurant/restaurant_main_page.html';
         } else {
             // Handle registration errors
             const errorData = await response.json();

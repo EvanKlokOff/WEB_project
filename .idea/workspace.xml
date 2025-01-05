@@ -4,19 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="258873d0-3777-4430-9050-9a984b3beb54" name="Changes" comment="fourth_commit">
+    <list default="true" id="258873d0-3777-4430-9050-9a984b3beb54" name="Changes" comment="fifth_commit">
       <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/DBmanager.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/DBmanager.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/authorization/repository.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/authorization/repository.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/authorization/router.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/authorization/router.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/authorization/schemas.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/authorization/schemas.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/pages/router.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/pages/router.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/pages/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/pages/utils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/restaurant/repository.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/restaurant/repository.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/restaurant/router.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/restaurant/router.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/restaurant/schemas.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/restaurant/schemas.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/js/restaurant/admin_panel.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/js/restaurant/admin_panel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/js/restaurant/book_table.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/js/restaurant/book_table.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -274,7 +266,15 @@
       <option name="project" value="LOCAL" />
       <updated>1736107779628</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="fifth_commit">
+      <option name="closed" value="true" />
+      <created>1736112896924</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1736112896924</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -296,6 +296,7 @@
     <MESSAGE value="second_commit" />
     <MESSAGE value="third_commit" />
     <MESSAGE value="fourth_commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="fourth_commit" />
+    <MESSAGE value="fifth_commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="fifth_commit" />
   </component>
 </project>
