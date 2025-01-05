@@ -17,6 +17,9 @@
             <button type="submit" class="btn_book" onclick="book_table()">Забронировать столик</button>
             <button type="submit" class="btn_login" onclick="login()">Войти</button>
             <button type="submit" class="btn_login" onclick="register()">Зарегистрироваться</button>
+            {% if role == "ADMIN" %}
+                <button type="submit" class="btn_admin_panel" onclick="show_admin_panel()">Режим администратора</button>
+            {% endif %}
         </div>
 
     </header>
@@ -87,6 +90,12 @@
     <footer>
         <p>&copy; 2024-2025 Харчевня Басуха. Все права защищены.</p>
     </footer>
-<script src="/static/js/restaurant/restaurant_main_page.js"></script>
+
+    {% if role == "ADMIN" %}
+        <script src="/static/js/restaurant/restaurant_main_page_admin.js"></script>
+    {%else%}
+        <script src="/static/js/restaurant/restaurant_main_page.js"></script>
+    {% endif %}
+
 </body>
 </html>

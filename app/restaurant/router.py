@@ -24,12 +24,15 @@ async def show_main_page(request: Request):
         tokens = get_tokens(request)
         user = await get_current_user(tokens)
         admin = await get_admin(user)
+        context=dict
         if admin:
-            return send_page("restaurant/restaurant_main_page_admin.html", request)
-        if user:
-            return
-    except:
-        return send_page("restaurant/restaurant_main_page.html", request)
+            context={"role":"ADMIN"}
+        elif user:
+            context = {"role": "AUTHORIZED_USER"}
+        return send_page_with_context("restaurant/restaurant_main_page.html", request, context)
+    except Exception as e:
+        print(e.__class__, e)
+        raise e
 
 
 #для всех пользователей

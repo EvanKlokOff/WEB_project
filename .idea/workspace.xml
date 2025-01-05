@@ -4,15 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="258873d0-3777-4430-9050-9a984b3beb54" name="Changes" comment="second_commit">
+    <list default="true" id="258873d0-3777-4430-9050-9a984b3beb54" name="Changes" comment="third_commit">
       <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/authorization/repository.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/authorization/repository.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/authorization/router.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/authorization/router.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/authorization/schemas.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/authorization/schemas.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/authorization/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/authorization/utils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/error_page/error_page.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/error_page/error_page.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/restaurant/router.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/restaurant/router.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/restaurant/restaurant_main_page.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/restaurant/restaurant_main_page.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/restaurant/restaurant_main_page_admin.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/restaurant/restaurant_main_page_admin.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -245,7 +242,15 @@
       <option name="project" value="LOCAL" />
       <updated>1736105173412</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="third_commit">
+      <option name="closed" value="true" />
+      <created>1736106287302</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1736106287302</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -265,6 +270,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="first_commit" />
     <MESSAGE value="second_commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="second_commit" />
+    <MESSAGE value="third_commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="third_commit" />
   </component>
 </project>
