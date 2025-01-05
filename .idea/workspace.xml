@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="258873d0-3777-4430-9050-9a984b3beb54" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/pythonProject.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/README" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/DBmanager.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/authorization/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/authorization/config.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/authorization/execptions.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/authorization/models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/authorization/repository.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/authorization/roles.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/authorization/router.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/authorization/schemas.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/authorization/utils.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/config.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/main.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/pages/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/pages/router.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/pages/utils.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/restaurant/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/restaurant/food_type.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/restaurant/models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/restaurant/repository.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/restaurant/router.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/restaurant/schemas.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/restaurant/utils.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/static/css/auth/enter_page.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/static/css/auth/login_page.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/static/css/auth/register_page.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/static/css/error_page.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/static/css/restaurant/admin_panel.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/static/css/restaurant/book_table.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/static/css/restaurant/menu.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/static/css/restaurant/restaraunt_main_page.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/static/css/restaurant/start_page.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/static/image/icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/static/image/menu/Olivier_salad.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/static/image/menu/black_tea.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/static/image/menu/bliny.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/static/image/menu/grechka.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/static/image/menu/medovik.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/static/image/menu/pivo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/static/image/menu/plov.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/static/image/menu/sashlik.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/static/image/menu/solyanka.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/static/image/menu/uha.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/static/js/auth/enter_page.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/static/js/auth/login_page.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/static/js/auth/register_page.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/static/js/restaurant/admin_panel.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/static/js/restaurant/book_table.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/static/js/restaurant/menu.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/static/js/restaurant/restaurant_main_page.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/static/js/restaurant/restaurant_main_page_admin.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/static/js/restaurant/start_page.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/templates/auth/enter_page.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/templates/auth/login_page.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/templates/auth/register_page.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/templates/error_page/error_page.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/templates/restaurant/admin_panel.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/templates/restaurant/book_table.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/templates/restaurant/menu.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/templates/restaurant/restaurant_main_page.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/templates/restaurant/restaurant_main_page_admin.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/templates/restaurant/start_page.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/utils.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
+  <component name="ProjectId" id="2oviKcFEuBJWdgwuwlcMETjHKF0" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;Python.config.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.roles.executor&quot;: &quot;Run&quot;,
+    &quot;Python.schemas.executor&quot;: &quot;Run&quot;,
+    &quot;Python.utils (1).executor&quot;: &quot;Run&quot;,
+    &quot;Python.utils (2).executor&quot;: &quot;Run&quot;,
+    &quot;Python.utils.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/ivanklokov/study/WEB/project/pythonProject/app/static/image&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/static/image" />
+      <recent name="$PROJECT_DIR$" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/static/css" />
+      <recent name="$PROJECT_DIR$/app/static/js/restaurant" />
+      <recent name="$PROJECT_DIR$/app/static/css/restaurant_css" />
+      <recent name="$PROJECT_DIR$/app/templates/restaurant_page" />
+      <recent name="$PROJECT_DIR$/app/templates/error_page" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.main">
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="pythonProject" />
+      <option name="ENV_FILES" value="$PROJECT_DIR$/env.env" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/app" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="net.ashald.envfile">
+        <option name="IS_ENABLED" value="true" />
+        <option name="IS_SUBST" value="false" />
+        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+        <option name="IS_IGNORE_MISSING_FILES" value="false" />
+        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+        <ENTRIES>
+          <ENTRY IS_ENABLED="true" PARSER="runconfig" IS_EXECUTABLE="false" />
+        </ENTRIES>
+      </EXTENSION>
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/app/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="roles" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="pythonProject" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/app/authorization" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/app/authorization/roles.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="schemas" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="pythonProject" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/app/authorization" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/app/authorization/schemas.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="utils (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="pythonProject" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/app/pages" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/app/pages/utils.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="utils (2)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="pythonProject" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/app/restaurant" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/app/restaurant/utils.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.main" />
+        <item itemvalue="Python.utils (2)" />
+        <item itemvalue="Python.utils (1)" />
+        <item itemvalue="Python.schemas" />
+        <item itemvalue="Python.roles" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-1b1018131e27-aa17d162503b-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-243.22562.180" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="258873d0-3777-4430-9050-9a984b3beb54" name="Changes" comment="" />
+      <created>1731756386329</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1731756386329</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.pem" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

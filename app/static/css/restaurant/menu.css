@@ -1,0 +1,105 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f8f8;
+    color: #333;
+}
+
+header {
+    background-color: #8B4513;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+header button {
+    background-color: #A0522D;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+header button:hover {
+    background-color: #8B4513;
+}
+
+.menu-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+/* Стили для текста внутри menu-item */
+.food-name {
+    font-size: 18px;
+    font-weight: bold;
+    color: #8B4513;
+    margin: 10px 0;
+}
+
+.food-cost {
+    font-size: 16px;
+    color: #A0522D;
+    margin: 10px 0;
+}
+
+.food-description {
+    font-size: 14px;
+    color: #555;
+    margin: 10px 0;
+    text-align: left
+}
+
+.menu-item {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    text-align: center;
+    width: 300px;
+}
+
+.menu-item img {
+    border-radius: 8px;
+    margin-top: 10px;
+}
+
+h2 {
+    color: #8B4513;
+    text-align: center;
+}
+
+.button {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.button button {
+    background-color: #A0522D;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.button button:hover {
+    background-color: #8B4513;
+}
+
+footer {
+    background-color: #8B4513;
+    color: white;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Харчевня Басуха</title>
+    <link rel="icon" href="/static/image/icon.png">
+    <link rel="stylesheet" type="text/css" href="/static/css/restaurant/restaraunt_main_page.css">
+</head>
+<body>
+
+    <!-- Шапка -->
+    <header>
+        <h1>Харчевня Басуха</h1>
+        <p>Добро пожаловать в уютный уголок традиционной кухни!</p>
+        <div class="button">
+            <button type="submit" class="btn_book" onclick="book_table()">Забронировать столик</button>
+            <button type="submit" class="btn_login" onclick="login()">Войти</button>
+            <button type="submit" class="btn_login" onclick="register()">Зарегистрироваться</button>
+        </div>
+
+    </header>
+
+    <!-- Навигация -->
+    <nav>
+        <a href="#about">О нас</a>
+        <a href="#menu">Меню</a>
+        <a href="#contacts">Контакты</a>
+    </nav>
+
+    <!-- О нас -->
+    <section id="about">
+        <h2>О нас</h2>
+        <p>Харчевня Басуха — это место, где вы можете насладиться блюдами, приготовленными по старинным рецептам. Мы используем только свежие и качественные продукты, чтобы порадовать наших гостей.</p>
+    </section>
+
+    <!-- Меню -->
+    <section id="menu">
+        <h2>Меню</h2>
+        <div class="menu-container">
+            <div class="menu-item">
+                <h3>Борщ</h3>
+            </div>
+            <div class="menu-item">
+                <h3>Пельмени</h3>
+            </div>
+            <div class="menu-item">
+                <h3>Гречка с гуляшом</h3>
+            </div>
+            <div class="menu-item">
+                <h3>Медовик</h3>
+            </div>
+            <div class="menu-item">
+                <h3>Солянка</h3>
+            </div>
+            <div class="menu-item">
+                <h3>Оливье</h3>
+            </div>
+            <div class="menu-item">
+                <h3>Шашлык</h3>
+            </div>
+            <div class="menu-item">
+                <h3>Блины</h3>
+            </div>
+            <div class="menu-item">
+                <h3>Уха</h3>
+            </div>
+            <div class="menu-item">
+                <h3>Плов</h3>
+            </div>
+        </div>
+        <div class="button">
+            <button type="submit" class="btn_menu" onclick="show_menu()">Подробнее</button>
+        </div>
+    </section>
+
+    <!-- Контакты -->
+    <section id="contacts">
+        <h2>Контакты</h2>
+        <p>Адрес: ул. Чапаева, д. 16а, г. Екатеринбург</p>
+        <p>Телефон: +7 (123) 456-78-90</p>
+        <p>Email: info@basukha.ru</p>
+        <p>Часы работы: ежедневно с 10:00 до 22:00</p>
+    </section>
+
+    <!-- Подвал -->
+    <footer>
+        <p>&copy; 2024-2025 Харчевня Басуха. Все права защищены.</p>
+    </footer>
+<script src="/static/js/restaurant/restaurant_main_page.js"></script>
+</body>
+</html>

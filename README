@@ -1,0 +1,9 @@
+AUTHORIZATION
+to create directory for storing private and public key use
+mkdir app/authorization/cert
+
+to generate_new rsa private key use following command:
+openssl genrsa -in app/authorization/cert/jwt_private.pem -outform PEM -pubout -out app/authorization/cert/jwt_public.pem
+
+to generate_new rsa public key use following command:
+openssl rsa -in app/authorization/cert/jwt_private.pem -outform PEM -pubout -out app/authorization/cert/jwt_public.pem

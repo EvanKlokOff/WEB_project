@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="/static/image/icon.png">
+    <link rel="stylesheet" type="text/css" href="/static/css/restaurant/menu.css">
+    <title>Меню</title>
+</head>
+<body>
+    <header>
+        <h1>Харчевня Басуха</h1>
+        <p>Добро пожаловать в уютный уголок традиционной кухни!</p>
+        <div class="button">
+            <button type="submit" class="btn_book" onclick="book_table()">Забронировать столик</button>
+            <button type="submit" class="btn_main_page" onclick="show_main_page()">На главную</button>
+        </div> <!-- Кнопка "На главную" -->
+    </header>
+
+    <h2>Меню</h2>
+    <div class="menu-container">
+        {% for menu in menus %}
+        <div class="menu-item">
+            <p class="food-name"> Название блюда: {{menu.food_name}}</p>
+            <p class="food-cost"> Цена блюда: {{menu.food_cost}} ₽</p>
+            <p class="food-description"> Описание блюда: {{menu.food_description}} </p>
+            <img src="{{menu.food_photo_path}}" alt="здесь должен быть {{menu.food_photo_path}}" width="300" height="200">
+        </div>
+        {% endfor %}
+    </div>
+    <footer>
+        <p>&copy; 2024-2025 Харчевня Басуха. Все права защищены.</p>
+    </footer>
+    <script src="/static/js/restaurant/menu.js"></script>
+</body>
+</html>

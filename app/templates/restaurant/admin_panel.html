@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Админ-панель | Харчевня Басуха</title>
+    <link rel="icon" href="/static/image/icon.png">
+    <link rel="stylesheet" type="text/css" href="/static/css/restaurant/admin_panel.css">
+</head>
+<body>
+
+    <!-- Шапка -->
+    <header>
+        <h1>Админ-панель | Харчевня Басуха</h1>
+        <p>Управление рестораном</p>
+        <div class="button">
+            <button type="submit" class="btn_login" onclick="show_main_page()"> На главную </button>
+        </div>
+    </header>
+
+    <!-- Навигация -->
+    <nav>
+        <a href="#menu">Редактировать меню</a>
+        <a href="#users">Редактировать пользователей</a>
+        <a href="#tables">Редактировать столики</a>
+    </nav>
+
+    <!-- Редактирование меню -->
+    <section id="menu">
+        <h2>Редактирование меню</h2>
+        <div class="admin-container">
+            <div class="admin-item">
+                <h3>Добавить блюдо</h3>
+                <form>
+                    <input type="text" id="meal_name" placeholder="Название блюда" required>
+                    <input type="text" id="meal_description" placeholder="Описание" required>
+                    <input type="number" id="meal_cost" placeholder="Цена" required>
+                    <select id="meal_type" required>
+                        <option value="MEAT_DISHES">Мясные блюда</option>
+                        <option value="SNACKS">Закуски</option>
+                        <option value="DESSERTS">Десерты</option>
+                        <option value="DRINKS">Напитки</option>
+                        <option value="SOUPS">Супы</option>
+                    </select>
+                    <input type="file" id="meal_image" accept="image/*" required>
+                    <div id="image_preview" class="image-preview">
+                        <p>Превью изображения</p>
+                    </div>
+                    <button type="submit" class="btn_add_new_menu" onclick="add_new_menu(event)">Добавить</button>
+                </form>
+            </div>
+            <div class="admin-item">
+                <h3>Удалить блюдо</h3>
+                <form>
+                    <select id="deleted_menu" required>
+                        {% for menu in menus %}
+                        <option value='{"id": {{menu.id}}, "food_photo_path": "{{menu.food_photo_path}}"}'>{{menu.food_name}}</option>
+                        {% endfor %}
+                    </select>
+                    <button type="submit" class="btn_delete_menu" onclick="delete_menu(event)">Удалить</button>
+                </form>
+            </div>
+            <div class="admin-item">
+                <h3>Изменить блюдо</h3>
+                <form>
+                    <select id="updated_menu" required>
+                        {% for menu in menus %}
+                        <option value='{"id": {{menu.id}}, "food_photo_path": "{{menu.food_photo_path}}", "food_name": "{{menu.food_name}}"}'>{{menu.food_name}}</option>
+                        {% endfor %}
+                    </select>
+                    <input type="text" id="updated_meal_name" placeholder="Новое название">
+                    <input type="text" id="updated_meal_description" placeholder="Новое описание">
+                    <input type="number" id="updated_meal_cost" placeholder="Новая цена">
+                    <select id="update_meal_type" required>
+                        <option value="MEAT_DISHES">Мясные блюда</option>
+                        <option value="SNACKS">Закуски</option>
+                        <option value="DESSERTS">Десерты</option>
+                        <option value="DRINKS">Напитки</option>
+                        <option value="SOUPS">Супы</option>
+                    </select>
+                    <input type="file" id="update_meal_image" accept="image/*">
+                    <div id="update_image_preview" class="image-preview">
+                        <p>Превью изображения</p>
+                    </div>
+                    <button type="submit" class="btn_change_menu" onclick="change_menu(event)">Изменить</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Редактирование пользователей -->
+    <section id="users">
+        <h2>Редактирование пользователей</h2>
+        <div class="admin-container">
+            <div class="admin-item">
+                <h3>Добавить пользователя</h3>
+                <form>
+                    <input type="text" id="added_user_name" placeholder="Имя пользователя" required>
+                    <input type="email" id="added_email_addres" placeholder="Email" required>
+                    <input type="password" id="added_user_password" placeholder="Пароль" required>
+                    <select id="added_user_role" required>
+                        <option value="AUTHORIZED_USER">Обычный пользователь</option>
+                        <option value="ADMIN">Админ</option>
+                    </select>
+                    <button type="submit" class="btn_add_user" onclick="add_user(event)">Добавить</button>
+                </form>
+            </div>
+            <div class="admin-item">
+                <h3>Удалить пользователя</h3>
+                <form>
+                    <select id="deleted_user" required>
+                        {% for user in users %}
+                        <option value="{{user.id}}">{{user.user_name}} {{user.email_address}}</option>
+                        {% endfor %}
+                    </select>
+                    <button type="submit" class="btn_delete_user" onclick="delete_user(event)">Удалить</button>
+                </form>
+            </div>
+            <div class="admin-item">
+                <h3>Изменить пользователя</h3>
+                <form>
+                    <select id="updated_user">
+                        {% for user in users %}
+                        <option value="{{user.id}}">{{user.user_name}} {{user.email_address}}</option>
+                        {% endfor %}
+                    </select>
+                    <input type="text" id="update_user_name" placeholder="Новое имя">
+                    <input type="email" id="update_user_email_address" placeholder="Новый email">
+                    <input type="password" id="update_new_password" placeholder="Новый пароль">
+                    <select id="new_user_role" required>
+                        <option value="AUTHORIZED_USER">Обычный пользователь</option>
+                        <option value="ADMIN">Админ</option>
+                    </select>
+                    <button type="submit" class="btn_change_user" onclick="change_user(event)">Изменить</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Редактирование столиков -->
+    <section id="tables">
+        <h2>Редактирование столиков</h2>
+        <div class="admin-container">
+            <div class="admin-item">
+                <h3>Занять столик</h3>
+                <form>
+                    <select id="booking_user_id" placeholder="Гость" required>
+                        {% for user in users %}
+                        <option value="{{user.id}}">Имя:{{user.user_name}} Почта:{{user.email_address}}</option>
+                        {% endfor %}
+                    </select>
+                    <input type="number" id="booking_guests_quantity" placeholder="Количество гостей" required>
+                    <input type="date" id="booking_date" placeholder="Время бронирования" required>
+                    <textarea id="booking_guest_comments" name="comments" rows="4"></textarea>
+                    <button type="submit" class="btn_book_table" onclick="book_table(event)">Добавить</button>
+                </form>
+            </div>
+            <div class="admin-item">
+                <h3>Освободить столик</h3>
+                <form>
+                    <select id="freed_table_info" required>
+                        {% for table in tables %}
+                            {% if not table.user_table_association.is_free %}
+                                <option value='{ "order_time":"{{table.user_table_association.order_time}}", "table_id":{{table.user_table_association.table_id}}, "user_id":{{table.user_table_association.user_id}} }'>Имя: {{table.user.user_name}} Почта:{{table.user.email_address}} Номер стола:{{table.table.id}} Время бронирования: {{table.user_table_association.order_time}}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                    <button type="submit" class="btn_free_table" onclick="free_table(event)">Освободить столик</button>
+                </form>
+            </div>
+            <div class="admin-item">
+                <h3>Изменить бронирование столика</h3>
+                <form>
+                    <select id="update_booking_table" required>
+                        {% for table in tables %}
+                            {% if not table.user_table_association.is_free %}
+                                <option value='{ "order_time":"{{table.user_table_association.order_time}}", "table_id":{{table.user_table_association.table_id}}, "user_id":{{table.user_table_association.user_id}} }'>Имя: {{table.user.user_name}} Почта:{{table.user.email_address}} Номер стола:{{table.table.id}} Время бронирования: {{table.user_table_association.order_time}}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                    <input type="number" id="update_guest_amount" placeholder="Новое количество мест" required>
+                    <input type="date" id="update_order_date" placeholder="Новая дата бронирования" required>
+                    <textarea id="update_guest_comments" name="comments" rows="4"></textarea>
+                    <button type="submit" class="btn_change_booking_table" onclick="change_booking_table(event)">Изменить</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Подвал -->
+    <footer>
+        <p>&copy; 2024-2025 Харчевня Басуха. Все права защищены.</p>
+    </footer>
+
+<script src="/static/js/restaurant/admin_panel.js"></script>
+</body>
+</html>

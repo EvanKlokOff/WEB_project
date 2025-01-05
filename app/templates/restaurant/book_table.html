@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/static/image/icon.png">
+    <link rel="stylesheet" type="text/css" href="/static/css/restaurant/book_table.css">
+    <title>Бронирование стола</title>
+</head>
+<body>
+    <!-- Шапка -->
+    <header>
+        <h1>Харчевня Басуха</h1>
+        <p>Добро пожаловать в уютный уголок традиционной кухни!</p>
+        <button onclick="window.location.href='menu.html'">Меню</button>
+        <button onclick="window.location.href='restaurant_main_page.html'">На главную</button>
+    </header>
+
+    <!-- Форма бронирования -->
+    <section id="booking">
+        <h2>Бронирование стола</h2>
+        <form id="booking-form">
+            <div class="form-group">
+                <label for="datetime">Дата и время:</label>
+                <input type="datetime-local" id="datetime" name="datetime" required>
+            </div>
+            <div class="form-group">
+                <label for="guests">Количество гостей:</label>
+                <input type="number" id="guests" name="guests" min="1" max="100" required>
+            </div>
+            <div class="form-group">
+                <label for="comments">Дополнительные пожелания:</label>
+                <textarea id="comments" name="comments" rows="4"></textarea>
+            </div>
+            <div id="errorMessage" class="error-message"></div>
+            <button type="submit" class="submit-btn" onclick="book_table(event)">Забронировать</button>
+        </form>
+    </section>
+
+    <!-- Подвал -->
+    <footer>
+        <p>&copy; 2024-2025 Харчевня Басуха. Все права защищены.</p>
+    </footer>
+    <script src="/static/js/restaurant/book_table.js"></script>
+</body>
+</html>

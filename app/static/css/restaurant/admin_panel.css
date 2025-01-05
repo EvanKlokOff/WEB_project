@@ -1,0 +1,170 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f8f8;
+    color: #333;
+}
+header {
+    background-color: #8B4513;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+header button {
+    background-color: #A0522D;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+header button:hover {
+    background-color: #8B4513;
+}
+nav {
+    background-color: #A0522D;
+    padding: 10px;
+    text-align: center;
+}
+nav a {
+    color: white;
+    margin: 0 15px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.menu-container {
+    display: flex;
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+    width: 100%;
+}
+
+.menu-item {
+    padding: 15px;
+    text-align: center;
+    margin-right: 20px;
+    flex: 0 0 auto;
+    position: relative;
+    left: 100%;
+    animation: slide 15s linear infinite;
+}
+
+@keyframes slide {
+    0% {
+        left: 100%;
+    }
+    100% {
+        left: -100%;
+    }
+}
+
+section {
+    padding: 20px;
+    margin: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+h2 {
+    color: #8B4513;
+    text-align:center
+}
+
+.button{
+    text-align: center; /* Выравнивание содержимого по центру */
+    margin-top: 20px; /* Отступ сверху */
+}
+
+.button button {
+    background-color: #A0522D;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.button button:hover {
+    background-color: #8B4513;
+
+}
+
+footer {
+    background-color: #8B4513;
+    color: white;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+/* Стили для админ-панели */
+.admin-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.admin-item {
+    background-color: #f8f8f8;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+}
+
+.admin-item h3 {
+    color: #8B4513;
+    margin-bottom: 15px;
+}
+
+.admin-item input, .admin-item select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.admin-item button {
+    background-color: #A0522D;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.admin-item button:hover {
+    background-color: #8B4513;
+}
+
+.image-preview {
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px dashed #ccc;
+    border-radius: 5px;
+    text-align: center;
+    background-color: #f9f9f9;
+}
+
+.image-preview img {
+    max-width: 100%;
+    max-height: 150px;
+    border-radius: 5px;
+}
+
+.image-preview p {
+    margin: 0;
+    color: #888;
+}
