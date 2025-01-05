@@ -39,7 +39,7 @@ async def show_login_page(page_name:str, requset: Request):
 @router.post('/register/', status_code=status.HTTP_201_CREATED)
 async def register_user(user: User_API_in):
     try:
-        registered_user = await rep.get_user_by_email_and_name(user)
+        registered_user = await rep.get_user_by_property(user_name = user.user_name, email_address = user.email_address)
         print(registered_user, "<- is user")
         if registered_user:
             raise HTTPException(

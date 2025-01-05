@@ -30,7 +30,6 @@ JWT_TOKEN_TYPE="type"
 JWT_ACCESS_TOKEN="access"
 JWT_REFRESH_TOKEN="refresh"
 
-
 def encode_jwt(
     payload:dict,
     private_key:str = auth_jwt.jwt_private_path.read_text(),
@@ -91,7 +90,7 @@ async def create_refresh_token(user: User_ORM_)-> str|bytes|None:
         await rep.add_refresh_token_by(refresh_token)
         return refresh_token
     except Exception as e:
-        print(e)
+        print(e.__class__, e)
         return None
 
 def hash_password(password: str) -> bytes:
@@ -99,23 +98,19 @@ def hash_password(password: str) -> bytes:
     pwd_bytes = password.encode()
     return bcrypt.hashpw(pwd_bytes, salt)
 
-def validate_password(
-        password: str,
-        hashed_password: bytes
-) -> bool:
+def validate_password(password: str,hashed_password: bytes) -> bool:
     return bcrypt.checkpw(
         password=password.encode(),
         hashed_password=hashed_password
     )
 
-def get_tokens(request: Request
-) -> JWT_tokens:
+def get_tokens(request: Request) -> JWT_tokens:
     access_token = request.cookies.get(USER_ACCESS_TOKEN)
     refresh_token = request.cookies.get(USER_REFRESH_TOKEN)
     if access_token and refresh_token:
         return JWT_tokens(access_token=access_token, refresh_token=refresh_token)
     raise HTTPException(
-        status_code=status.HTTP_401_UNAUTHORIZED, detail="token not found"
+        status_code=status.HTTP_401_UNAUTHORIZED, detail=app.token_is_invalid
     )
 
 async def get_current_user(tokens: JWT_tokens = Depends(get_tokens)) -> User_ORM_:
@@ -148,17 +143,16 @@ async def authenticate_tokens(tokens:JWT_tokens = Depends(get_tokens)) -> User_O
 
     return await rep.get_user_by_property(id=user_id)
 
-
 async def get_admin(user: User_ORM_ = Depends(get_current_user)) -> User_ORM_:
     try:
-        if user.user_role is Roles.ADMIN:
+        if user.user_role == Roles.ADMIN:
             return user
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail=app.u_have_not_enough_rights)
     except:
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=app.token_is_invalid)
 
 async def authenticate_user(user: User_API_in) -> None | User_ORM_:
-    user_ = await rep.get_user_by_email_and_name(user)
+    user_ = await rep.get_user_by_property(user_name = user.user_name, email_address = user.email_address)
     if user_:
         if validate_password(user.password, user_.hashed_password):
             return User_ORM_(**user_.model_dump())
@@ -172,12 +166,3 @@ async def authenticate_user(user: User_API_in) -> None | User_ORM_:
             status_code=status.HTTP_403_FORBIDDEN,
             detail=app.wrong_password_or_login
         )
-
-if __name__ == "__main__":
-    password = "1234"
-    hash_password_ = hash_password(password)
-    print(hash_password_)
-    if validate_password(password, hash_password_):
-        print(12)
-    else:
-        print(-1)

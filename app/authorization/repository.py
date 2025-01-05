@@ -47,7 +47,6 @@ async def add_refresh_token_by(token: str|bytes) -> None:
             print("we have exception", e.__class__, e)
             raise e
 
-
 async def delete_refresh_token_by_property(**kwargs) -> None:
     async with session_factory() as session:
         try:
@@ -92,11 +91,7 @@ async def get_users_by_property(**kwargs) -> List[User_ORM_]:
             print(e.__class__, e)
             raise e
 
-async def get_user_by_email_and_name(user: User_API_in) -> User_ORM_out | None:
-    return await get_user_by_property(user_name = user.user_name,email_address = user.email_address)
-
-async def change_user(user_info: User_info,
-                      new_data:User_info) -> None:
+async def change_user(user_info: User_info, new_data:User_info) -> None:
     async with session_factory() as session:
         try:
             dict_to_find = {key: value for key, value in user_info.model_dump().items() if value is not None}

@@ -26,6 +26,8 @@ async def show_main_page(request: Request):
         admin = await get_admin(user)
         if admin:
             return send_page("restaurant/restaurant_main_page_admin.html", request)
+        if user:
+            return
     except:
         return send_page("restaurant/restaurant_main_page.html", request)
 

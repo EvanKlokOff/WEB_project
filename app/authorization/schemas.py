@@ -47,9 +47,6 @@ class User_info(BaseModel):
             raise ValueError("Fields are None")
         return self
 
-class Access_token(BaseModel):
-    access_token: str|bytes
-
 class Refresh_token(BaseModel):
     refresh_token: str|bytes
     model_config = ConfigDict(from_attributes=True)
