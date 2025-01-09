@@ -9,7 +9,7 @@ import app.restaurant.repository as rep
 from app.restaurant.schemas import Menu_In
 from app.restaurant.food_type import food_types
 from app.restaurant.repository import add_tables
-
+from app.DBmanager import add_thing
 @asynccontextmanager
 async def lifespan_(app: FastAPI):
     #create db
@@ -89,18 +89,18 @@ async def lifespan_(app: FastAPI):
     #                     food_type=food_types.DRINKS,
     #                     food_photo_path="/static/image/menu/black_tea.png"
     #                     )
-    # await rep.add_food_to_menu(borsh)
-    # await rep.add_food_to_menu(pelmeni)
-    # await rep.add_food_to_menu(grechka)
-    # await rep.add_food_to_menu(medovik)
-    # await rep.add_food_to_menu(solyanka)
-    # await rep.add_food_to_menu(olivie)
-    # await rep.add_food_to_menu(sashlik)
-    # await rep.add_food_to_menu(bliny)
-    # await rep.add_food_to_menu(uha)
-    # await rep.add_food_to_menu(plov)
-    # await rep.add_food_to_menu(pivo)
-    # await rep.add_food_to_menu(black_tea)
+    # await add_thing(borsh, Menu)
+    # await add_thing(pelmeni, Menu)
+    # await add_thing(grechka, Menu)
+    # await add_thing(medovik, Menu)
+    # await add_thing(solyanka, Menu)
+    # await add_thing(olivie, Menu)
+    # await add_thing(sashlik, Menu)
+    # await add_thing(bliny, Menu)
+    # await add_thing(uha, Menu)
+    # await add_thing(plov, Menu)
+    # await add_thing(pivo, Menu)
+    # await add_thing(black_tea, Menu)
     #
     # await add_tables()
 

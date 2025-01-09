@@ -18,12 +18,13 @@ def send_page_with_context(page_name:str,
     try:
         contex={'request':request}
         contex.update(**page_context)
-
         return templates.TemplateResponse(name=page_name,
                                           context=contex)
     except Exception as e:
+        print("ошибка в отправлении ошибки")
         print(e.__class__, e)
         raise e
+
 def send_page_with_context_and_status_code(page_name,
                                            request:Request,
                                            page_context:dict,

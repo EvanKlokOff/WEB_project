@@ -14,9 +14,8 @@ from app.restaurant.schemas import (
                                     User_Tables_association_info)
 from app.restaurant.utils import store_image_in,delete_image_in
 from app.restaurant.schemas import Order_Table, Order_Table_in
-import app.DBmanager
 from app.restaurant.models import Menu
-
+from app.authorization.roles import Roles
 
 router = APIRouter(prefix="/restaurant",
                    tags=["Restaurant"]
@@ -26,16 +25,29 @@ router = APIRouter(prefix="/restaurant",
 @router.get("/restaurant_main_page.html", tags=["root"])
 async def show_main_page(request: Request):
     try:
-        tokens = get_tokens(request)
-        user = await get_current_user(tokens)
-        admin = await get_admin(user)
-        context=dict
+
+        try:
+            tokens = get_tokens(request)
+            user = await get_current_user(tokens)
+        except:
+            print("Ошибка в получении пользователя")
+            user=None
+
+        try:
+            admin = await get_admin(user)
+        except:
+            print("Ошибка в получении админа")
+            admin=None
+
         if admin:
-            context={"role":"ADMIN"}
+            context={"role":Roles.ADMIN.value}
         elif user:
-            context = {"role": "AUTHORIZED_USER"}
+            context = {"role": Roles.AUTHORIZED_USER.value}
+        else:
+            context = {"role": Roles.UNAUTHORIZED_USER.value}
         return send_page_with_context("restaurant/restaurant_main_page.html", request, context)
     except Exception as e:
+        print("ошибка в получении главной страницы")
         print(e.__class__, e)
         raise e
 
