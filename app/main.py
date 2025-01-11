@@ -6,6 +6,7 @@ from app.pages.router import router as page_router
 import uvicorn
 from fastapi.staticfiles import StaticFiles
 from app.restaurant.router import router as restaurant_router
+from app.send_emails.router import router as email_router
 
 app = FastAPI(lifespan=lifespan_)
 
@@ -14,6 +15,7 @@ app.mount("/static", StaticFiles(directory='/home/ivanklokov/study/WEB/project/p
 app.include_router(restaurant_router)
 app.include_router(auth_router)
 app.include_router(page_router)
+#app.include_router(email_router)
 
 @app.exception_handler(HTTPException)
 async def http_exception_handler(request: Request, exc: HTTPException):

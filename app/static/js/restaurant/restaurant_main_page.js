@@ -7,6 +7,10 @@ async function login(){
 async function register(){
     window.location.href="http://127.0.0.1:8000/auth/register_page.html"
 }
+async function show_personal_account(){
+    window.location.href="http://127.0.0.1:8000/restaurant/personal_account.html"
+}
+
 async function book_table(){
         const response = await fetch("http://127.0.0.1:8000/restaurant/book_table.html", {
             method: 'GET',

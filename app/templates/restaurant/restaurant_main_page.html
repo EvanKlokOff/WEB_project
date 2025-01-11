@@ -15,8 +15,13 @@
         <p>Добро пожаловать в уютный уголок традиционной кухни!</p>
         <div class="button">
             <button type="submit" class="btn_book" onclick="book_table()">Забронировать столик</button>
-            <button type="submit" class="btn_login" onclick="login()">Войти</button>
-            <button type="submit" class="btn_login" onclick="register()">Зарегистрироваться</button>
+            {% if role != "ADMIN" and role != "AUTHORIZED_USER" %}
+                <button type="submit" class="btn_login" onclick="login()">Войти</button>
+                <button type="submit" class="btn_login" onclick="register()">Зарегистрироваться</button>
+            {% endif %}
+            {% if role == "ADMIN" or role == "AUTHORIZED_USER" %}
+                <button type="submit" class="btn_personal_account" onclick="show_personal_account()">Личный кабинет</button>
+            {% endif %}
             {% if role == "ADMIN" %}
                 <button type="submit" class="btn_admin_panel" onclick="show_admin_panel()">Режим администратора</button>
             {% endif %}

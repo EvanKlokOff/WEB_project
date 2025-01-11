@@ -5,9 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="258873d0-3777-4430-9050-9a984b3beb54" name="Changes" comment="seven_commit">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/send_emails/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/send_emails/config.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/send_emails/my_utils.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/send_emails/router.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/send_emails/schemas.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/send_emails/utils.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/static/css/restaurant/personal_account.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/static/js/restaurant/personal_account.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/templates/restaurant/personal_account.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/authorization/router.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/authorization/router.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/restaurant/repository.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/restaurant/repository.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/restaurant/router.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/restaurant/router.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/static/js/restaurant/admin_panel.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/js/restaurant/admin_panel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/js/restaurant/restaurant_main_page.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/js/restaurant/restaurant_main_page.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/js/restaurant/restaurant_main_page_admin.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/js/restaurant/restaurant_main_page_admin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/restaurant/restaurant_main_page.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/restaurant/restaurant_main_page.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,8 +33,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="Python Script" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -47,24 +63,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
-    "DefaultHtmlFileTemplate": "HTML File",
-    "Python.config.executor": "Run",
-    "Python.main.executor": "Debug",
-    "Python.roles.executor": "Run",
-    "Python.schemas.executor": "Run",
-    "Python.utils (1).executor": "Run",
-    "Python.utils (2).executor": "Run",
-    "Python.utils.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "/home/ivanklokov/study/WEB/project/pythonProject/app/static/image/menu",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;Python.config.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.roles.executor&quot;: &quot;Run&quot;,
+    &quot;Python.schemas.executor&quot;: &quot;Run&quot;,
+    &quot;Python.utils (1).executor&quot;: &quot;Run&quot;,
+    &quot;Python.utils (2).executor&quot;: &quot;Run&quot;,
+    &quot;Python.utils.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/ivanklokov/study/WEB/project/pythonProject/app/static/image/menu&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/app/static/image/menu" />
@@ -80,9 +96,31 @@
     </key>
   </component>
   <component name="RunManager" selected="Python.main">
+    <configuration name="config" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="pythonProject" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/app/send_emails" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/app/send_emails/config.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="pythonProject" />
-      <option name="ENV_FILES" value="$PROJECT_DIR$/venv_files/env.env" />
+      <option name="ENV_FILES" value="$PROJECT_DIR$/venv_files/email.env:$PROJECT_DIR$/venv_files/env.env" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -202,6 +240,7 @@
     </configuration>
     <list>
       <item itemvalue="Python.main" />
+      <item itemvalue="Python.config" />
       <item itemvalue="Python.roles" />
       <item itemvalue="Python.schemas" />
       <item itemvalue="Python.utils (1)" />
@@ -209,6 +248,7 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.config" />
         <item itemvalue="Python.utils (2)" />
         <item itemvalue="Python.utils (1)" />
         <item itemvalue="Python.schemas" />
@@ -304,7 +344,15 @@
       <option name="project" value="LOCAL" />
       <updated>1736589628868</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="seven_commit">
+      <option name="closed" value="true" />
+      <created>1736589660094</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1736589660094</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="UnknownFeatures">

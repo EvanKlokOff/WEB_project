@@ -134,8 +134,8 @@ async def change_table_booking(order_info: User_Tables_association_info,
    await free_table(order_info)
    await book_table(booking_info)
 
-async def get_all_tables():
-    tables = await get_tables_info()
+async def get_all_tables() -> List[dict]:
+    tables = await get_all_tables_info()
     tables_=[]
     for table in tables:
         dict_to_add = {
@@ -145,11 +145,23 @@ async def get_all_tables():
                        }
         tables_.append(dict_to_add)
     return tables_
+async def get_tables_of_user(**kwargs):
+    tables = await get_all_tables_info(**kwargs)
+    tables_ = []
+    for table in tables:
+        dict_to_add = {
+            "user_table_association": table["user_table_association"].model_dump(),
+            "user": table["user"].model_dump(),
+            "table": table["table"].model_dump()
+        }
+        tables_.append(dict_to_add)
+    return tables_
 
-async def get_tables_info(**kwargs) -> List[dict]:
+async def get_all_tables_info(**kwargs) -> List[dict]:
     async with session_factory() as session:
         stmt =(
             select(User_Tables_association, Table, Users)
+            .filter_by(**kwargs)
             .join(Table, User_Tables_association.table_id == Table.id)
             .join(Users, User_Tables_association.user_id == Users.id)
             .order_by(User_Tables_association.order_time.asc())

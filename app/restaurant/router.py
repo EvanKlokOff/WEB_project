@@ -21,11 +21,33 @@ router = APIRouter(prefix="/restaurant",
                    tags=["Restaurant"]
                    )
 
-#
-@router.get("/restaurant_main_page.html", tags=["root"])
+#для авторизованных пользователей
+@router.get("/book_table.html", status_code=status.HTTP_200_OK, dependencies=[Depends(get_current_user)])
+async def show_book_page(request: Request):
+    try:
+        return send_page('restaurant/book_table.html', request)
+    except HTTPException as http_e:
+        print(http_e.__class__, http_e, http_e.detail, http_e.args)
+    except Exception as e:
+        print(e.__class__, e)
+
+#метод для админа
+@router.get("/admin_panel.html", dependencies=[Depends(get_admin)])
+async def get_admin_panel(request: Request,
+                          menus: [dict] = Depends(rest_rep.get_all_menus),
+                          users: [dict] = Depends(auth_rep.get_all_users),
+                          tables: [dict] = Depends(rest_rep.get_all_tables)
+                          ):
+    context = {"menus": menus,
+               "users": users,
+               "tables": tables
+               }
+    return send_page_with_context("restaurant/admin_panel.html", request, context)
+
+
+@router.get("/restaurant_main_page.html")
 async def show_main_page(request: Request):
     try:
-
         try:
             tokens = get_tokens(request)
             user = await get_current_user(tokens)
@@ -48,6 +70,25 @@ async def show_main_page(request: Request):
         return send_page_with_context("restaurant/restaurant_main_page.html", request, context)
     except Exception as e:
         print("ошибка в получении главной страницы")
+        print(e.__class__, e)
+        raise e
+
+
+@router.get("/personal_account.html")
+async def show_personal_account_page(request: Request, user: User_ORM_ = Depends(get_current_user)):
+    try:
+
+        orders = await rest_rep.get_tables_of_user(user_id=user.id, is_free=False)
+        print(orders)
+
+        context = {
+            "user": user.model_dump(),
+            "orders": orders
+        }
+
+        return send_page_with_context("restaurant/personal_account.html", request,context)
+    except Exception as e:
+        print("ошибка в получении страницы личного кабинета")
         print(e.__class__, e)
         raise e
 
@@ -106,32 +147,20 @@ async def change_menu(menu_info:Menu_info,
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="something go bad")
 
 
-#для авторизованных пользователей
-@router.get("/book_table.html", status_code=status.HTTP_200_OK, dependencies=[Depends(get_current_user)])
-async def show_book_page(request: Request):
+#метод для админа
+@router.post('/book_table_admin/', status_code=status.HTTP_202_ACCEPTED, dependencies=[Depends(get_admin)])
+async def book_table_for_admin(booking_info: Order_Table_in):
     try:
-        return send_page('restaurant/book_table.html', request)
-    except HTTPException as http_e:
-        print(http_e.__class__, http_e, http_e.detail, http_e.args)
+        for k, v in booking_info.model_dump().items():
+            print(k, v)
+        await rest_rep.book_table(Order_Table_in(**booking_info.model_dump()))
     except Exception as e:
         print(e.__class__, e)
-
-#метод для админа
-@router.get("/admin_panel.html", dependencies=[Depends(get_admin)])
-async def get_admin_panel(request: Request,
-                          menus: [dict] = Depends(rest_rep.get_all_menus),
-                          users: [dict] = Depends(auth_rep.get_all_users),
-                          tables: [dict] = Depends(rest_rep.get_all_tables)
-                          ):
-    context = {"menus": menus,
-               "users": users,
-               "tables": tables
-               }
-    return send_page_with_context("restaurant/admin_panel.html", request, context)
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="something_go_bad_in_booking")
 
 #метод для авторизованных пользователей
 @router.post('/book_table/', status_code=status.HTTP_202_ACCEPTED)
-async def book_table(booking_info: Order_Table, user:User_ORM_=Depends(get_current_user)):
+async def book_table(booking_info: Order_Table, user: User_ORM_=Depends(get_current_user)):
     try:
         for k, v in booking_info.model_dump().items():
             print(k, v)
@@ -139,6 +168,7 @@ async def book_table(booking_info: Order_Table, user:User_ORM_=Depends(get_curre
     except Exception as e:
         print(e.__class__, e)
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="something_go_bad_in_booking")
+
 
 @router.delete('/free_table/', dependencies=[Depends(get_admin)])
 async def free_table_by(order_info: User_Tables_association_info):

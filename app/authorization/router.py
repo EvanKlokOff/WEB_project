@@ -88,7 +88,8 @@ async def login_user(response: Response, user: User_ORM_ = Depends(authenticate_
         )
 
 @router.post('/logout/', status_code=status.HTTP_200_OK)
-async def logout_user(response: Response, user: User_ORM_ = Depends(get_current_user)):
+async def logout_user(response: Response,
+                      user: User_ORM_ = Depends(get_current_user)):
     try:
         response.delete_cookie(key=USER_ACCESS_TOKEN)
         response.delete_cookie(key=USER_REFRESH_TOKEN)
@@ -131,7 +132,7 @@ async def delete_user(
         user_info: User_info
 ):
     try:
-        await delete_thing(user_info, Users)
+        await DBmanager.delete_thing(user_info, Users)
     except Exception as e:
         print(e.__class__, e)
         raise HTTPException(

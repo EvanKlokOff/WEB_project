@@ -343,7 +343,7 @@ async function book_table(event){
 
     try{
         alert("booking start")
-        const response = await fetch('http://127.0.0.1:8000/restaurant/book_table/', {
+        const response = await fetch('http://127.0.0.1:8000/restaurant/book_table_admin/', {
             method: 'POST',
             headers: {
                 'accept': 'application/json',
