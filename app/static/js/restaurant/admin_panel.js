@@ -61,15 +61,14 @@ async function add_new_menu(event) {
 async function change_menu(event) {
     event.preventDefault(); // Предотвращаем стандартное поведение формы (перезагрузку страницы)
 
-    //получаем выбранное блюдо, которое будем изменять
+    // Получаем выбранное блюдо, которое будем изменять
     const updated_value = document.getElementById('updated_menu').value;
     const data = JSON.parse(updated_value);
     const food_photo_path = data.food_photo_path;
     const id = data.id;
-    const food_name = data.food_name
 
-    if (!id || !food_photo_path || !food_name) {
-        alert('Пожалуйста выберете блюдо, которое хотите изменить');
+    if (!id || !food_photo_path) {
+        alert('Пожалуйста, выберите блюдо, которое хотите изменить');
         return;
     }
 
@@ -79,37 +78,74 @@ async function change_menu(event) {
     const mealCost_to_update = document.getElementById('updated_meal_cost').value;
     const mealType_to_update = document.getElementById('update_meal_type').value;
     const mealImage_to_update = document.getElementById('update_meal_image').files[0];
-    // Проверяем, что все поля заполнены
+
+    // Проверяем, что хотя бы одно поле заполнено
     if (!mealName_to_update && !mealDescription_to_update && !mealCost_to_update && !mealType_to_update && !mealImage_to_update) {
         alert('Пожалуйста, заполните хотя бы одно поле или выберите изображение.');
         return;
     }
 
-    // Преобразуем изображение в base64
-    const reader = new FileReader();
-    reader.onload = async function () {
-        const base64Image = reader.result.split(',')[1]; // Убираем префикс "data:image/..."
+    // Создаем объект для хранения изменений
+    const change_menu_info = {};
 
-        const menu_info = {
-            id: id,
-            food_photo_path: food_photo_path
-        }
-        // Создаем объект JSON для отправки
-        const change_menu_info = {
-            food_name: mealName_to_update,
-            food_description: mealDescription_to_update,
-            food_cost: mealCost_to_update,
-            food_type: mealType_to_update,
-            food_image: base64Image, // Изображение в формате base64
+    // Добавляем только те поля, которые были введены
+    if (mealName_to_update) change_menu_info.food_name = mealName_to_update;
+    if (mealDescription_to_update) change_menu_info.food_description = mealDescription_to_update;
+    if (mealCost_to_update) change_menu_info.food_cost = mealCost_to_update;
+    if (mealType_to_update) change_menu_info.food_type = mealType_to_update;
+
+    // Если изображение было выбрано, преобразуем его в base64
+    if (mealImage_to_update) {
+        const reader = new FileReader();
+        reader.onload = async function () {
+            const base64Image = reader.result.split(',')[1]; // Убираем префикс "data:image/..."
+            change_menu_info.food_image = base64Image; // Добавляем изображение в формате base64
+
+            // Формируем окончательный объект данных для отправки
+            const data = {
+                menu_info: {
+                    id: id,
+                    food_photo_path: food_photo_path
+                },
+                change_menu_info: change_menu_info
+            };
+
+            try {
+                // Отправляем PUT-запрос на сервер
+                const response = await fetch('http://127.0.0.1:8000/restaurant/change_menu', {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json', // Указываем, что отправляем JSON
+                    },
+                    body: JSON.stringify(data), // Преобразуем объект в JSON
+                });
+
+                // Проверяем ответ сервера
+                if (response.ok) {
+                    alert('Блюдо успешно изменено!');
+                    location.reload();
+                } else {
+                    alert('Ошибка при изменении блюда');
+                }
+            } catch (error) {
+                alert('Произошла ошибка при отправке запроса.');
+            }
         };
 
+        // Читаем файл как Data URL (base64)
+        reader.readAsDataURL(mealImage_to_update);
+    } else {
+        // Если изображение не было выбрано, отправляем данные без него
         const data = {
-            menu_info:menu_info,
+            menu_info: {
+                id: id,
+                food_photo_path: food_photo_path
+            },
             change_menu_info: change_menu_info
-        }
+        };
 
         try {
-            // Отправляем POST-запрос на сервер
+            // Отправляем PUT-запрос на сервер
             const response = await fetch('http://127.0.0.1:8000/restaurant/change_menu', {
                 method: 'PUT',
                 headers: {
@@ -120,20 +156,16 @@ async function change_menu(event) {
 
             // Проверяем ответ сервера
             if (response.ok) {
-                alert('Блюдо успешно добавлено!');
-                location.reload()
+                alert('Блюдо успешно изменено!');
+                location.reload();
             } else {
-                alert('Ошибка при добавлении блюда');
+                alert('Ошибка при изменении блюда');
             }
         } catch (error) {
             alert('Произошла ошибка при отправке запроса.');
         }
-    };
-
-    // Читаем файл как Data URL (base64)
-    reader.readAsDataURL(mealImage_to_update);
+    }
 }
-
 async function delete_menu(event){
     event.preventDefault(); // Предотвращаем стандартное поведение формы (перезагрузку страницы)
     // Получаем значения из формы
@@ -181,7 +213,7 @@ async function add_user(event){
     const email_addres = document.getElementById('added_email_addres').value;
     const user_password = document.getElementById('added_user_password').value;
     const user_role = document.getElementById('added_user_role').value;
-    
+
     // Проверяем, что все поля заполнены
     if (!user_name || !email_addres || !user_password || !user_role){
         alert('Пожалуйста, заполните все поля.');
@@ -239,16 +271,20 @@ async function change_user(event){
         alert('Пожалуйста, заполните хотя бы одно поле');
         return;
     }
-    
-    const new_data={
-        user_name: user_name_to_update,
-        password:password_to_update,
-        email_address:user_email_address_to_update,
-        user_role:user_role_to_update
-    }    
+
+    // Создаем объект для хранения изменений
+    const change_user_info = {};
+
+    // Добавляем только те поля, которые были введены
+    if (user_name_to_update) change_user_info.user_name = user_name_to_update;
+    if (user_email_address_to_update) change_user_info.email_address = user_email_address_to_update;
+    if (password_to_update) change_user_info.password = password_to_update;
+    if (user_role_to_update) change_user_info.user_role = user_role_to_update;
+
+
     const json_data = {
         user_info:user_info,
-        new_data:new_data
+        new_data:change_user_info
     }
 
     try {
@@ -270,7 +306,7 @@ async function change_user(event){
         }
     }catch (error) {
         alert('Произошла ошибка при отправке запроса.');
-    }    
+    }
 
 }
 
@@ -314,7 +350,7 @@ async function book_table(event){
     const booking_guests_quantity = document.getElementById("booking_guests_quantity").value
     const booking_date = document.getElementById("booking_date").value
     const booking_guest_comments = document.getElementById("booking_guest_comments").value
-    
+
     if (!booking_user_id || !booking_guests_quantity || !booking_date){
         alert("Выберете все поля");
         return;
@@ -384,7 +420,7 @@ async function free_table(event){
         table_id: table_id,
         user_id: user_id
     }
-    
+
     try {
         // Отправляем POST-запрос на сервер
         const response = await fetch('http://127.0.0.1:8000/restaurant/free_table/', {
@@ -404,7 +440,7 @@ async function free_table(event){
         }
     }catch (error) {
         alert('Произошла ошибка при отправке запроса.');
-    }   
+    }
 
 }
 
@@ -412,7 +448,7 @@ async function change_booking_table(event){
     event.preventDefault();
     const freed_table_info = document.getElementById("update_booking_table").value;
     const data = JSON.parse(freed_table_info);
-    
+
     const order_time = data.order_time;
     const table_id = data.table_id;
     const user_id = data.user_id;
@@ -430,22 +466,23 @@ async function change_booking_table(event){
     const update_guests_quantity = document.getElementById("update_guest_amount").value
     const update_order_date = document.getElementById("update_order_date").value
     const update_guest_comments = document.getElementById("update_guest_comments").value
-    
+
     if(!update_guests_quantity && !update_order_date && !update_guest_comments){
         alert("Заполните хотя бы одно поле");
         return;
     }
 
-    const booking_info={
-        order_time: update_order_date,
-        guest_amount: update_guests_quantity,
-        user_id: user_id,
-        extra_wishes:update_guest_comments
-    }
+    const change_booking_info = {};
+
+    // Добавляем только те поля, которые были введены
+    if (user_id) change_booking_info.user_id = user_id
+    if (update_guests_quantity) change_booking_info.guest_amount = update_guests_quantity;
+    if (update_order_date) change_booking_info.order_time = update_order_date;
+    if (update_guest_comments) change_booking_info.extra_wishes= update_guest_comments;
 
     const json_data={
         order_info: order_info,
-        booking_info: booking_info
+        booking_info: change_booking_info
     }
     try {
         // Отправляем POST-запрос на сервер

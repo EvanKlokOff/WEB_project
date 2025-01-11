@@ -86,19 +86,20 @@ async def change_menu(menu_info:Menu_info,
                       change_menu_info: Menu_In_Base_64_info
                       ):
     try:
+        file_path = menu_info.food_photo_path
         if change_menu_info.food_image:
             delete_image_in(menu_info.food_photo_path)
             if change_menu_info.food_name:
                 file_path=store_image_in(change_menu_info.food_image, change_menu_info.food_name)
             else:
                 file_path=store_image_in(change_menu_info.food_image, menu_info.food_name)
-            change_menu_info_ = Menu_info(id=change_menu_info.id,
-                                          food_name=change_menu_info.food_name,
-                                          food_cost=change_menu_info.food_cost,
-                                          food_description=change_menu_info.food_description,
-                                          food_type=change_menu_info.food_type,
-                                          food_photo_path=file_path
-                                          )
+        change_menu_info_ = Menu_info(id=change_menu_info.id,
+                                      food_name=change_menu_info.food_name,
+                                      food_cost=change_menu_info.food_cost,
+                                      food_description=change_menu_info.food_description,
+                                      food_type=change_menu_info.food_type,
+                                      food_photo_path=file_path
+                                      )
         await rest_rep.change_food_in_menu(menu_info, change_menu_info_)
     except Exception as e:
         print(e.__class__, e)

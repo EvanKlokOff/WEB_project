@@ -4,15 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="258873d0-3777-4430-9050-9a984b3beb54" name="Changes" comment="six_commit">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/authorization/roles.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/authorization/roles.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/pages/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/pages/utils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/restaurant/router.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/restaurant/router.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/restaurant/restaurant_main_page.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/restaurant/restaurant_main_page.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/utils.py" afterDir="false" />
-    </list>
+    <list default="true" id="258873d0-3777-4430-9050-9a984b3beb54" name="Changes" comment="six_commit" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -28,6 +20,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -83,9 +76,9 @@
     </key>
   </component>
   <component name="RunManager" selected="Python.main">
-    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="pythonProject" />
-      <option name="ENV_FILES" value="$PROJECT_DIR$/env.env" />
+      <option name="ENV_FILES" value="$PROJECT_DIR$/venv_files/env.env" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -203,9 +196,15 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Python.main" />
+      <item itemvalue="Python.roles" />
+      <item itemvalue="Python.schemas" />
+      <item itemvalue="Python.utils (1)" />
+      <item itemvalue="Python.utils (2)" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.main" />
         <item itemvalue="Python.utils (2)" />
         <item itemvalue="Python.utils (1)" />
         <item itemvalue="Python.schemas" />
@@ -317,6 +316,7 @@
     <MESSAGE value="fourth_commit" />
     <MESSAGE value="fifth_commit" />
     <MESSAGE value="six_commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="six_commit" />
+    <MESSAGE value="seven_commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="seven_commit" />
   </component>
 </project>
