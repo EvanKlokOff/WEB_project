@@ -4,13 +4,16 @@ from pydantic import (Field,
                       BeforeValidator,
                       model_validator,
                       BaseModel,
-                      ConfigDict
+                      ConfigDict,
+                      EmailStr
                       )
 from app.authorization.roles import Roles
+import app.authorization as auth
+
 
 class User(BaseModel):
-    user_name: str = Field(min_length=2)
-    email_address: str = Field(min_length=5)
+    user_name: str = Field(min_length=auth.min_name_length)
+    email_address: EmailStr
     model_config = ConfigDict(from_attributes=True)
 
 class User_add_schema(User):
@@ -32,7 +35,7 @@ def is_valid_role(value)->Roles:
         print(e.__class__, e)
 
 class User_API_in(User):
-    password: str
+    password: str = Field(min_length=auth.min_password_length)
     user_role: Annotated[Roles, BeforeValidator(is_valid_role)] = Field(Roles.AUTHORIZED_USER)
 
 class User_ORM_out(User_ORM_):
@@ -40,9 +43,9 @@ class User_ORM_out(User_ORM_):
 
 class User_info(BaseModel):
     id: None|int = Field(None)
-    user_name: str|None = Field(None, min_length=2)
+    user_name: str|None = Field(None, min_length=auth.min_name_length)
     password: str|None = Field(None)
-    email_address: str|None = Field(None, min_length=5)
+    email_address: EmailStr|None = Field(None)
     user_role: str|None = Field(None)
 
     @model_validator(mode='after')
@@ -58,3 +61,7 @@ class Refresh_token(BaseModel):
 class JWT_tokens(BaseModel):
     access_token: str|bytes
     refresh_token: str|bytes
+
+class User_creadential_schema(BaseModel):
+    id: int
+    password: str = Field(None, min_length=auth.min_password_length)

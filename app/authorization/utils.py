@@ -24,7 +24,9 @@ import bcrypt
 import jwt
 
 from authorization import USER_REFRESH_TOKEN
-from app.authorization.schemas import JWT_tokens
+from app.authorization.schemas import (JWT_tokens,
+                                       User_creadential_schema)
+from functools import singledispatch
 
 JWT_TOKEN_TYPE="type"
 JWT_ACCESS_TOKEN="access"
@@ -151,8 +153,11 @@ async def get_admin(user: User_ORM_ = Depends(get_current_user)) -> User_ORM_:
     except:
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=app.token_is_invalid)
 
+
 async def authenticate_user(user: User_API_in) -> None | User_ORM_:
-    user_ = await rep.get_user_by_property(user_name = user.user_name, email_address = user.email_address)
+    print("первый метод")
+    user_ = await rep.get_user_by_property(user_name = user.user_name,
+                                           email_address = user.email_address)
     if user_:
         if validate_password(user.password, user_.hashed_password):
             return User_ORM_(**user_.model_dump())
@@ -162,6 +167,30 @@ async def authenticate_user(user: User_API_in) -> None | User_ORM_:
                 detail=app.wrong_password_or_login
             )
     else:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail=app.wrong_password_or_login
+        )
+
+async def authenticate_user_by_id(user: User_creadential_schema) -> None | User_ORM_:
+    print("Второй метод")
+    print(user)
+    try:
+        user_ = await rep.get_user_by_property(id = user.id)
+    except Exception as e:
+        print("ошибка при получении пользователя с бд")
+        raise e
+    if user_:
+        if validate_password(user.password, user_.hashed_password):
+            return User_ORM_(**user_.model_dump())
+        else:
+            print("пароль не совпал")
+            raise HTTPException(
+                status_code=status.HTTP_403_FORBIDDEN,
+                detail=app.wrong_password_or_login
+            )
+    else:
+        print("пользователя с таким id нет")
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
             detail=app.wrong_password_or_login

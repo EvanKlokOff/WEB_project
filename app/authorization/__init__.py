@@ -1,2 +1,5 @@
 USER_ACCESS_TOKEN = "X_USER_ACCESS_TOKEN"
 USER_REFRESH_TOKEN = "X_USER_REFRESH_TOKEN"
+
+min_password_length=7
+min_name_length=2

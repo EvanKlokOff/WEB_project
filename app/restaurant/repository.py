@@ -117,8 +117,9 @@ async def book_table(booking_info: Order_Table_in) -> User_Tables_association_ou
 async def free_table(order_info: User_Tables_association_info) -> None:
     async with session_factory() as session:
         try:
+            order_info_ = {k:v for k,v in order_info.model_dump().items() if v is not None}
             select_stmt=(
-                select(User_Tables_association).filter_by(**order_info.model_dump())
+                select(User_Tables_association).filter_by(**order_info_)
             )
             result = await session.execute(select_stmt)
             booked_table = result.scalar_one()

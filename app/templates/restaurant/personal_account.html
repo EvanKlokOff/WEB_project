@@ -30,7 +30,7 @@
         <h2>Профиль</h2>
         <p>Имя: {{ user.user_name }}</p>
         <p>Email: {{ user.email_address }}</p>
-        <button type="submit" class="btn_change_password" onclick="change_password()">изменить пароль</button>
+        <button type="submit" class="btn_change_user" id="user_id: {{user.id}}" onclick="change_user(event)">изменить данные</button>
     </section>
 
     <!-- Мои заказы -->
@@ -39,10 +39,10 @@
         <div class="orders-container">
             {% for order in orders %}
             <div class="order-item">
-                <p>Дата: {{ order.user_table_association.order_time }}</p>
-                <p>Кол-во гостей: {{order.user_table_association.guest_amount}} </p>
-                <p>Номер столика: {{order.user_table_association.table_id}} </p>
-                <button type="submit" class="btn_on_main_page" onclick="cancel_booking()"> отменить бронирование</button>
+                <p class="date">Дата: {{ order.user_table_association.order_time }}</p>
+                <p class="guest_amount">Кол-во гостей: {{order.user_table_association.guest_amount}} </p>
+                <p class="table_id">Номер столика: {{order.user_table_association.table_id}} </p>
+                <button type="submit" id="btn_id: {{order.user.id}}" class="btn_on_main_page" onclick="cancel_booking(event)"> отменить бронирование</button>
             </div>
             {% endfor %}
         </div>

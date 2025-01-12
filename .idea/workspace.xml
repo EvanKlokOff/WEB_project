@@ -4,26 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="258873d0-3777-4430-9050-9a984b3beb54" name="Changes" comment="seven_commit">
+    <list default="true" id="258873d0-3777-4430-9050-9a984b3beb54" name="Changes" comment="eight_commit">
       <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/send_emails/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/send_emails/config.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/send_emails/my_utils.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/send_emails/router.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/send_emails/schemas.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/send_emails/utils.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/css/restaurant/personal_account.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/js/restaurant/personal_account.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/templates/restaurant/personal_account.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/authorization/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/authorization/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/authorization/repository.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/authorization/repository.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/authorization/router.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/authorization/router.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/authorization/schemas.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/authorization/schemas.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/authorization/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/authorization/utils.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/restaurant/repository.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/restaurant/repository.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/restaurant/router.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/restaurant/router.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/js/restaurant/admin_panel.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/js/restaurant/admin_panel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/js/restaurant/restaurant_main_page.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/js/restaurant/restaurant_main_page.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/js/restaurant/restaurant_main_page_admin.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/js/restaurant/restaurant_main_page_admin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/restaurant/restaurant_main_page.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/restaurant/restaurant_main_page.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/css/restaurant/personal_account.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/css/restaurant/personal_account.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/js/restaurant/book_table.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/js/restaurant/book_table.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/js/restaurant/personal_account.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/js/restaurant/personal_account.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/restaurant/personal_account.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/restaurant/personal_account.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -352,7 +346,15 @@
       <option name="project" value="LOCAL" />
       <updated>1736589660094</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="eight_commit">
+      <option name="closed" value="true" />
+      <created>1736630607818</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1736630607818</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -377,6 +379,7 @@
     <MESSAGE value="fifth_commit" />
     <MESSAGE value="six_commit" />
     <MESSAGE value="seven_commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="seven_commit" />
+    <MESSAGE value="eight_commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="eight_commit" />
   </component>
 </project>

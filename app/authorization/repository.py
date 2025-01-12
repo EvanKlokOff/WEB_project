@@ -85,19 +85,19 @@ async def change_user(user_info: User_info, new_data:User_info) -> None:
             dict_to_find = {key: value for key, value in user_info.model_dump().items() if value is not None}
             result = await session.execute(select(Users).filter_by(**dict_to_find))
             obj = result.scalars().first()
+            if obj:
+                dict_to_update = new_data.model_dump()
+                if new_data.password:
+                    dict_to_update.update(
+                        hashed_password=utils.hash_password(new_data.password)
+                    )
+                    del dict_to_update["password"]
+                for key, value in dict_to_update.items():
+                    if value:
+                        print(key, value)
+                        setattr(obj, key, value)
+                await session.commit()
+            else:
+                raise ValueError(f"there are no user {user_info.model_dump()}")
         except Exception as e:
             print(e.__class__, e)
-        if obj:
-            dict_to_update = new_data.model_dump()
-            if new_data.password:
-                dict_to_update.update(
-                    hashed_password=utils.hash_password(new_data.password)
-                )
-                del dict_to_update["password"]
-            for key, value in dict_to_update.items():
-                if value:
-                    print(key, value)
-                    setattr(obj, key, value)
-            await session.commit()
-        else:
-            raise ValueError(f"there are no user {user_info.model_dump()}")

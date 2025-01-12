@@ -1,3 +1,5 @@
+from typing import Annotated
+
 from fastapi import APIRouter, Request, Depends, HTTPException, status
 
 import DBmanager
@@ -20,7 +22,8 @@ from app.authorization.roles import Roles
 router = APIRouter(prefix="/restaurant",
                    tags=["Restaurant"]
                    )
-
+User_input=Annotated[User_ORM_, Depends(get_current_user)]
+Admin_input=Annotated[User_ORM_, Depends(get_admin)]
 #для авторизованных пользователей
 @router.get("/book_table.html", status_code=status.HTTP_200_OK, dependencies=[Depends(get_current_user)])
 async def show_book_page(request: Request):
@@ -180,6 +183,19 @@ async def free_table_by(order_info: User_Tables_association_info):
     except Exception as e:
         print(e.__class__, e)
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="something_go_bad")
+
+@router.delete('/free_table_for_authorized_user/')
+async def free_table_for_authorized_user(order_info: User_Tables_association_info,
+                                         user: User_input):
+    try:
+        order_info.user_id=user.id
+        print(order_info)
+        await rest_rep.free_table(order_info)
+    except Exception as e:
+        print(e.__class__, e)
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="something_go_bad")
+
+
 
 @router.put('/change_table/', dependencies=[Depends(get_admin)])
 async def change_table(order_info:User_Tables_association_info,

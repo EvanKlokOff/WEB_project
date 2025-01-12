@@ -7,7 +7,7 @@ async function book_table(event){
     const errorMessage = document.getElementById('errorMessage');
 
     alert("got data")
-    if(!order_time || !guests_number || !extra_wishes){
+    if(!order_time || !guests_number){
         alert("выберете все поля");
         errorMessage.textContent="выберете все поля";
         return

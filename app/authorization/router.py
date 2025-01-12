@@ -28,16 +28,24 @@ from app.authorization.schemas import (
     User_API_in,
     User_ORM_,
     User_info,
-    User_add_schema
+    User_add_schema,
+    User_creadential_schema
     )
 from app.authorization.models import Users
+from authorization.utils import authenticate_user_by_id
 from pages.utils import send_page
 import app.DBmanager
+from typing import Annotated
+import app
 
 router = APIRouter(
     prefix='/auth',
     tags=['auth']
 )
+
+
+User_input=Annotated[User_ORM_, Depends(get_current_user)]
+Admin_input=Annotated[User_ORM_, Depends(get_admin)]
 
 @router.get("/{page_name}")
 async def show_login_page(page_name:str, requset: Request):
@@ -89,7 +97,7 @@ async def login_user(response: Response, user: User_ORM_ = Depends(authenticate_
 
 @router.post('/logout/', status_code=status.HTTP_200_OK)
 async def logout_user(response: Response,
-                      user: User_ORM_ = Depends(get_current_user)):
+                      user: User_input):
     try:
         response.delete_cookie(key=USER_ACCESS_TOKEN)
         response.delete_cookie(key=USER_REFRESH_TOKEN)
@@ -115,7 +123,8 @@ async def auth_refresh_jwt(response: Response, user: User_ORM_ = Depends(authent
         )
 
 @router.put('/change_user/', status_code=status.HTTP_200_OK, dependencies=[Depends(get_admin)])
-async def change_user(user_info: User_info, new_data: User_info):
+async def change_user(user_info: User_info,
+                      new_data: User_info):
     try:
         await rep.change_user(user_info,
                               new_data
@@ -140,5 +149,23 @@ async def delete_user(
             detail=app.server_error
         )
 
+@router.post('/change_user_by_user/', status_code=status.HTTP_200_OK, dependencies=[Depends(get_current_user)])
+async def change_user_by_user(user_credential: User_creadential_schema,
+                              user_change_info: User_info):
+    try:
+        user = await authenticate_user_by_id(user_credential)
+    except:
+        print("ошибка при получении пользователя")
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail=app.wrong_password_or_login)
 
+    if user:
+        try:
+            dict_to_find = user_credential.model_dump()
+            del dict_to_find["password"]
+            await rep.change_user(User_info(**dict_to_find), user_change_info)
+        except Exception as e:
+            print("ошибка при изменении пользователя")
+            raise e
+    else:
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail=app.wrong_password_or_login)
 

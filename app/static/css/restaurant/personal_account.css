@@ -104,3 +104,28 @@ footer {
 .order-item button:hover {
     background-color: #8B4513;
 }
+
+change-user-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 300px;
+}
+
+#change-user-form label {
+    font-weight: bold;
+}
+
+#change-user-form input {
+    padding: 5px;
+}
+
+#change-user-form .button-group {
+    display: flex;
+    gap: 10px;
+}
+
+#change-user-form button {
+    padding: 5px 10px;
+    cursor: pointer;
+}
