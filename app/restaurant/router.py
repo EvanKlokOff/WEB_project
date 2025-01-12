@@ -18,6 +18,7 @@ from app.restaurant.utils import store_image_in,delete_image_in
 from app.restaurant.schemas import Order_Table, Order_Table_in
 from app.restaurant.models import Menu
 from app.authorization.roles import Roles
+from app.restaurant import TOO_MUCH_TABLES_TODAY, UNKNOWN_ERROR
 
 router = APIRouter(prefix="/restaurant",
                    tags=["Restaurant"]
@@ -29,10 +30,10 @@ Admin_input=Annotated[User_ORM_, Depends(get_admin)]
 async def show_book_page(request: Request):
     try:
         return send_page('restaurant/book_table.html', request)
-    except HTTPException as http_e:
-        print(http_e.__class__, http_e, http_e.detail, http_e.args)
     except Exception as e:
         print(e.__class__, e)
+        raise e
+
 
 #метод для админа
 @router.get("/admin_panel.html", dependencies=[Depends(get_admin)])
@@ -80,8 +81,7 @@ async def show_main_page(request: Request):
 @router.get("/personal_account.html")
 async def show_personal_account_page(request: Request, user: User_ORM_ = Depends(get_current_user)):
     try:
-
-        orders = await rest_rep.get_tables_of_user(user_id=user.id, is_free=False)
+        orders = await rest_rep.get_tables_of_user(user_id=user.id)
         print(orders)
 
         context = {
@@ -156,10 +156,11 @@ async def book_table_for_admin(booking_info: Order_Table_in):
     try:
         for k, v in booking_info.model_dump().items():
             print(k, v)
-        await rest_rep.book_table(Order_Table_in(**booking_info.model_dump()))
+        user = await rest_rep.book_table(Order_Table_in(**booking_info.model_dump()))
+        print(user)
     except Exception as e:
         print(e.__class__, e)
-        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="something_go_bad_in_booking")
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=UNKNOWN_ERROR)
 
 #метод для авторизованных пользователей
 @router.post('/book_table/', status_code=status.HTTP_202_ACCEPTED)
@@ -167,10 +168,15 @@ async def book_table(booking_info: Order_Table, user: User_ORM_=Depends(get_curr
     try:
         for k, v in booking_info.model_dump().items():
             print(k, v)
-        await rest_rep.book_table(Order_Table_in(**booking_info.model_dump(), user_id=user.id))
+        if await rest_rep.check_constraint(Order_Table_in(**booking_info.model_dump(), user_id=user.id)):
+            await rest_rep.book_table(Order_Table_in(**booking_info.model_dump(), user_id=user.id))
+        else:
+            raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail=TOO_MUCH_TABLES_TODAY)
+    except HTTPException as e_:
+        raise e_
     except Exception as e:
         print(e.__class__, e)
-        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="something_go_bad_in_booking")
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=UNKNOWN_ERROR)
 
 
 @router.delete('/free_table/', dependencies=[Depends(get_admin)])
@@ -182,7 +188,7 @@ async def free_table_by(order_info: User_Tables_association_info):
         await rest_rep.free_table(order_info)
     except Exception as e:
         print(e.__class__, e)
-        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="something_go_bad")
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=UNKNOWN_ERROR)
 
 @router.delete('/free_table_for_authorized_user/')
 async def free_table_for_authorized_user(order_info: User_Tables_association_info,
@@ -193,7 +199,7 @@ async def free_table_for_authorized_user(order_info: User_Tables_association_inf
         await rest_rep.free_table(order_info)
     except Exception as e:
         print(e.__class__, e)
-        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="something_go_bad")
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=UNKNOWN_ERROR)
 
 
 
@@ -208,4 +214,4 @@ async def change_table(order_info:User_Tables_association_info,
         await rest_rep.change_table_booking(order_info, booking_info)
     except Exception as e:
         print(e.__class__, e)
-        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="something_go_bad")
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=UNKNOWN_ERROR)

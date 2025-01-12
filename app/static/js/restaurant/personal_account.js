@@ -152,8 +152,12 @@ function change_user(event) {
             if (response.ok) {
                 alert('Данные успешно изменены.');
                 window.location.reload(); // Перезагружаем страницу для обновления данных
-            } else {
-                alert('Ошибка при изменении данных: ');
+            }  else {
+            // Если ответ — HTML, открываем его в новом окне
+            const html = await response.text();
+            const newWindow = window.open("about:blank", "_blank");
+            newWindow.document.write(html);
+            newWindow.document.close();
             }
         } catch (error) {
             alert('Произошла ошибка при отправке данных.');

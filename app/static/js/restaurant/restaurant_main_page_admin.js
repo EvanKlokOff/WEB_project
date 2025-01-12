@@ -25,6 +25,6 @@ async function book_table(){
         if (response.ok){
             window.location.href="http://127.0.0.1:8000/restaurant/book_table.html"
         }else{
-            window.location.href="http://127.0.0.1:8000/auth/enter_page.html"
+            window.location.href="http://127.0.0.1:8000/auth/login_page.html"
         }
 }

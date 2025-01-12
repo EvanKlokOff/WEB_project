@@ -2,6 +2,7 @@ from app.restaurant.models import Menu, Table
 from app.authorization.models import User_Tables_association, Users
 from app.DBmanager import session_factory
 from app.authorization.schemas import User_ORM_
+from fastapi import HTTPException, status
 from app.restaurant.schemas import (Menu_In,
                                     Menu_info,
                                     Menu_out,
@@ -10,8 +11,9 @@ from app.restaurant.schemas import (Menu_In,
                                     User_Tables_association_out,
                                     User_Tables_association_info
                                     )
-from sqlalchemy import select, delete, cast, Date, update
-from restaurant import LIMIT_OF_TABLE, LIMIT_OF_GUEST_ON_TABLE
+import app.restaurant as rest
+from sqlalchemy import select, delete, cast, Date
+from restaurant import LIMIT_OF_TABLE, LIMIT_OF_GUEST_ON_TABLE, MAX_AMOUNT_TABLE_PER_DAY
 from typing import List
 from app.DBmanager import get_things
 
@@ -53,11 +55,32 @@ async def add_tables(table_quantity: int = LIMIT_OF_TABLE,
         except Exception as e:
             print(e.__class__, e)
 
+async def check_constraint(booking_info: Order_Table_in, max_amount_table_on_user: int = MAX_AMOUNT_TABLE_PER_DAY)->bool:
+    async with session_factory() as session:
+        try:
+            order_date = booking_info.order_time.date()  # дата без времени
+            # Формируем запрос для занятых столиков на указанную дату
+            stmt = (
+                select(User_Tables_association)
+                .filter(
+                    cast(User_Tables_association.order_time, Date) == order_date,
+                    User_Tables_association.user_id == booking_info.user_id# Фильтр по дате
+                )
+            )
+            result = await session.execute(stmt)
+            tables_info = result.scalars().all()
+            return len(tables_info) < max_amount_table_on_user
+        except Exception as e:
+            print(e.__class__, e)
+            raise e
+
+
 async def book_table(booking_info: Order_Table_in) -> User_Tables_association_out | None:
     async with session_factory() as session:
         try:
+            print("БРОНИРОВАНИЕ СТОЛА______________________")
             order_date = booking_info.order_time.date() #дата без времени
-            # Формируем запрос для поиска свободных столиков на указанную дату
+            # Формируем запрос для занятых столиков на указанную дату
             stmt = (
                 select(User_Tables_association)
                 .filter(
@@ -70,65 +93,48 @@ async def book_table(booking_info: Order_Table_in) -> User_Tables_association_ou
             result = await session.execute(stmt)
             tables_info = result.scalars().all()
             user_table_ass=None
-            if not tables_info: #нет никаких столов, поэтому добавляем новый занятый стол
+
+            print(tables_info,[table.__repr__() for table in tables_info])
+            if not tables_info: #нет занятых столов на выбранную дату, поэтому добавляем новый занятый стол
+                print("нет столов на текущую дату")
                 dict_to_add = booking_info.model_dump()
-                dict_to_add.update(is_free=False, table_id=1)
+                dict_to_add.update(table_id=1)
                 session.add(User_Tables_association(**dict_to_add))
                 user_table_ass = User_Tables_association_out.model_validate(dict_to_add)
             else:
-                #столы есть, но мы не знаем их статус
-                #поэтому перебираем все найденные столы, если среди них найдётся свободный, то занимаем
-                for table in tables_info:
-                    if (table.is_free):
-                        table_to_book = tables_info
-                        user_table_ass = User_Tables_association_out(
-                                                                     order_time=booking_info.order_time,
-                                                                     guest_amount=booking_info.guests_number,
-                                                                     extra_wishes=booking_info.extra_wishes,
-                                                                     is_free=False,
-                                                                     user_id=booking_info.user_id,
-                                                                     table_id=table_to_book.table_id
-                                                                     )
-                        # Обновляем запись, чтобы пометить столик как занятый
-                        update_stmt = (
-                            update(User_Tables_association)
-                            .filter_by(table_id=table_to_book.id)
-                            .values(
-                                **user_table_ass.model_dump()
-                            )
-                        )
-                        await session.execute(update_stmt)
+                ordered_tables_id = {table.table_id for table in tables_info}
+                free_table_id = None
+                for i in range(LIMIT_OF_TABLE):
+                    if (i+1) not in ordered_tables_id:
+                        free_table_id = i + 1
                         break
-                # если свободный не найдётся, то в зависимости от кол-ва столов, можно добавить ещё один стол
-                # либо сказать, что свободных мест нет
-                if not user_table_ass:
-                    if(len(tables_info)) <= LIMIT_OF_TABLE:
-                        dict_to_add = booking_info.model_dump()
-                        dict_to_add.update(is_free=False, table_id=tables_info[-1].table_id+1)
-                        session.add(User_Tables_association(**dict_to_add))
-                        user_table_ass = User_Tables_association_out.model_validate(dict_to_add)
-                    else:
-                        raise Exception("Not enough free tables")
+                # занятые столы есть, поэтому нужно проверить их количество и проверить, что места точно хватит
+                if free_table_id:
+                    dict_to_add = booking_info.model_dump()
+                    dict_to_add.update(table_id=free_table_id)
+                    session.add(User_Tables_association(**dict_to_add))
+                    user_table_ass = User_Tables_association_out.model_validate(dict_to_add)
+                else:
+                    await session.rollback()
+                    raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=rest.NOT_ENOUGH_FREE_TABLE)
             await session.commit()
             return user_table_ass
         except Exception as e:
             print(e.__class__, e)
+            raise e
 
 async def free_table(order_info: User_Tables_association_info) -> None:
     async with session_factory() as session:
         try:
             order_info_ = {k:v for k,v in order_info.model_dump().items() if v is not None}
-            select_stmt=(
-                select(User_Tables_association).filter_by(**order_info_)
+            delete_stmt=(
+                delete(User_Tables_association).filter_by(**order_info_)
             )
-            result = await session.execute(select_stmt)
-            booked_table = result.scalar_one()
-            booked_table.is_free=True
-
-            await session.flush()
+            await session.execute(delete_stmt)
             await session.commit()
         except Exception as e:
             print(e.__class__, e)
+            raise e
 
 async def change_table_booking(order_info: User_Tables_association_info,
                                booking_info: Order_Table_in) -> None:
@@ -146,6 +152,8 @@ async def get_all_tables() -> List[dict]:
                        }
         tables_.append(dict_to_add)
     return tables_
+
+
 async def get_tables_of_user(**kwargs):
     tables = await get_all_tables_info(**kwargs)
     tables_ = []
@@ -157,6 +165,7 @@ async def get_tables_of_user(**kwargs):
         }
         tables_.append(dict_to_add)
     return tables_
+
 
 async def get_all_tables_info(**kwargs) -> List[dict]:
     async with session_factory() as session:

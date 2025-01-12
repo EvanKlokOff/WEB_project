@@ -9,7 +9,6 @@ class User_Tables_association(Base):
     order_time: Mapped[datetime]
     guest_amount: Mapped[int]
     extra_wishes: Mapped[str|None]
-    is_free: Mapped[bool] = mapped_column(default=True)
     user_id: Mapped[int] = mapped_column(ForeignKey('users.id', ondelete="CASCADE"))
     table_id: Mapped[int] = mapped_column(ForeignKey('tables.id', ondelete="CASCADE"))
 

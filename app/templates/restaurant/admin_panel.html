@@ -150,7 +150,7 @@
                         {% endfor %}
                     </select>
                     <input type="number" id="booking_guests_quantity" placeholder="Количество гостей" required>
-                    <input type="date" id="booking_date" placeholder="Время бронирования" required>
+                    <input type="datetime-local" id="booking_date" placeholder="Время бронирования" required>
                     <textarea id="booking_guest_comments" name="comments" rows="4"></textarea>
                     <button type="submit" class="btn_book_table" onclick="book_table(event)">Добавить</button>
                 </form>
@@ -179,7 +179,7 @@
                         {% endfor %}
                     </select>
                     <input type="number" id="update_guest_amount" placeholder="Новое количество мест" required>
-                    <input type="date" id="update_order_date" placeholder="Новая дата бронирования" required>
+                    <input type="datetime-local" id="update_order_date" placeholder="Новая дата бронирования" required>
                     <textarea id="update_guest_comments" name="comments" rows="4"></textarea>
                     <button type="submit" class="btn_change_booking_table" onclick="change_booking_table(event)">Изменить</button>
                 </form>

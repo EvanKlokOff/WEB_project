@@ -4,20 +4,27 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="258873d0-3777-4430-9050-9a984b3beb54" name="Changes" comment="eight_commit">
+    <list default="true" id="258873d0-3777-4430-9050-9a984b3beb54" name="Changes" comment="nine_commit">
       <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/static/fonts/ofont.ru_Balkara Condensed.ttf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/authorization/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/authorization/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/authorization/repository.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/authorization/repository.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/authorization/router.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/authorization/router.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/authorization/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/authorization/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/authorization/schemas.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/authorization/schemas.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/authorization/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/authorization/utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/restaurant/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/restaurant/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/restaurant/repository.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/restaurant/repository.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/restaurant/router.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/restaurant/router.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/css/restaurant/personal_account.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/css/restaurant/personal_account.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/restaurant/schemas.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/restaurant/schemas.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/css/restaurant/restaraunt_main_page.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/css/restaurant/restaraunt_main_page.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/js/auth/login_page.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/js/auth/login_page.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/js/auth/register_page.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/js/auth/register_page.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/js/restaurant/admin_panel.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/js/restaurant/admin_panel.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/static/js/restaurant/book_table.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/js/restaurant/book_table.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/static/js/restaurant/personal_account.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/js/restaurant/personal_account.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/restaurant/personal_account.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/restaurant/personal_account.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/js/restaurant/restaurant_main_page.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/js/restaurant/restaurant_main_page.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/js/restaurant/restaurant_main_page_admin.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/js/restaurant/restaurant_main_page_admin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/restaurant/admin_panel.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/restaurant/admin_panel.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,26 +64,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;Python.config.executor&quot;: &quot;Run&quot;,
-    &quot;Python.main.executor&quot;: &quot;Run&quot;,
-    &quot;Python.roles.executor&quot;: &quot;Run&quot;,
-    &quot;Python.schemas.executor&quot;: &quot;Run&quot;,
-    &quot;Python.utils (1).executor&quot;: &quot;Run&quot;,
-    &quot;Python.utils (2).executor&quot;: &quot;Run&quot;,
-    &quot;Python.utils.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/ivanklokov/study/WEB/project/pythonProject/app/static/image/menu&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
+    "DefaultHtmlFileTemplate": "HTML File",
+    "Python.config.executor": "Run",
+    "Python.main.executor": "Run",
+    "Python.roles.executor": "Run",
+    "Python.schemas.executor": "Run",
+    "Python.utils (1).executor": "Run",
+    "Python.utils (2).executor": "Run",
+    "Python.utils.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "/home/ivanklokov/study/WEB/project/pythonProject/app/static/fonts",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/static/fonts" />
       <recent name="$PROJECT_DIR$/app/static/image/menu" />
       <recent name="$PROJECT_DIR$/app/static/image" />
       <recent name="$PROJECT_DIR$" />
@@ -354,7 +362,15 @@
       <option name="project" value="LOCAL" />
       <updated>1736630607818</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="nine_commit">
+      <option name="closed" value="true" />
+      <created>1736693830589</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1736693830589</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -380,6 +396,7 @@
     <MESSAGE value="six_commit" />
     <MESSAGE value="seven_commit" />
     <MESSAGE value="eight_commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="eight_commit" />
+    <MESSAGE value="nine_commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="nine_commit" />
   </component>
 </project>

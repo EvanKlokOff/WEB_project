@@ -46,9 +46,11 @@ async function login(event){
             //alert('Вход прошёл успешно!');
             window.location.href = 'http://127.0.0.1:8000/restaurant/restaurant_main_page.html';
         } else {
-            // Handle registration errors
-            const errorData = await response.json();
-            errorMessage.textContent = errorData.message || 'Ошибка регистрации';
+            // Если ответ — HTML, открываем его в новом окне
+            const html = await response.text();
+            const newWindow = window.open("about:blank", "_blank");
+            newWindow.document.write(html);
+            newWindow.document.close();
         }
     }catch (error)
     {

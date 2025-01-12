@@ -1,3 +1,14 @@
-LIMIT_OF_TABLE = 20
+LIMIT_OF_TABLE = 5
 LIMIT_OF_GUEST_ON_TABLE = 6
 DEFAULT_GUEST_QUANTITY = 4
+MAX_AMOUNT_TABLE_PER_DAY=3
+TOO_MUCH_TABLES_TODAY="Вы заказали уже 3 столика сегодня. Если вы хотите устроить праздник или корпоратив, свяжитесь с нами :)"
+UNKNOWN_ERROR="Произошла ошибка. Мы работаем над тем чтобы её исправить"
+INVALID_DATE_AND_TIME_FORMAT="Дата и время не валидны(неверный формат)"
+INVALID_DATE_AND_TIME_VALUES="Дата и время не валидны(неверные значения)"
+TOO_MUCH_GUEST = f"Неправильное количество гостей. Наши столики вмещают от 1 до {LIMIT_OF_GUEST_ON_TABLE} гостей"
+INVALID_GUEST_FORMAT="Неправильный формат гостей. Нам нужно знать ЧИСЛО гостей :)"
+INVALID_FOOD_TYPE_FORMAT="Неправильный формат типа еды. Нам нужно знать ТИП еды :)"
+INVALID_COST = "Цена может быть только положительной"
+INVALID_COST_TYPE="Неправильный формат цены. Нам нужно знать ПОЛОЖИТЕЛЬНОЕ ЧИСЛО денег :)"
+NOT_ENOUGH_FREE_TABLE="На сегодня свободных мест нет"

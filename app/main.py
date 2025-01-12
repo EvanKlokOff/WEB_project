@@ -7,6 +7,7 @@ import uvicorn
 from fastapi.staticfiles import StaticFiles
 from app.restaurant.router import router as restaurant_router
 from app.send_emails.router import router as email_router
+from fastapi import status
 
 app = FastAPI(lifespan=lifespan_)
 
@@ -25,6 +26,16 @@ async def http_exception_handler(request: Request, exc: HTTPException):
         request,
         {"error_message": exc.detail},
         exc.status_code
+    )
+
+@app.exception_handler(ValueError)
+async def http_exception_handler(request: Request, exc: ValueError):
+
+    return send_page_with_context_and_status_code(
+        "error_page/error_page.html",
+        request,
+        {"error_message": exc.args[0]},
+        status_code=status.HTTP_403_FORBIDDEN
     )
 if __name__ == '__main__':
     uvicorn.run(

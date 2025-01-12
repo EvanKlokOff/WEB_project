@@ -64,9 +64,11 @@ async function regFunction(event){
             // Optional: Redirect to login page or dashboard
             window.location.href = 'http://127.0.0.1:8000/auth/login_page.html';
         } else {
-            // Handle registration errors
-            const errorData = await response.json();
-            errorMessage.textContent = errorData.message || 'Ошибка регистрации';
+            // Если ответ — HTML, открываем его в новом окне
+            const html = await response.text();
+            const newWindow = window.open("about:blank", "_blank");
+            newWindow.document.write(html);
+            newWindow.document.close();
         }
     }catch (error)
     {

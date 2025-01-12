@@ -46,8 +46,12 @@ async function add_new_menu(event) {
             if (response.ok) {
                 alert('Блюдо успешно добавлено!');
                 location.reload()
-            } else {
-                alert('Ошибка при добавлении блюда:');
+            }  else {
+                // Если ответ — HTML, открываем его в новом окне
+                const html = await response.text();
+                const newWindow = window.open("about:blank", "_blank");
+                newWindow.document.write(html);
+                newWindow.document.close();
             }
         } catch (error) {
             alert('Произошла ошибка при отправке запроса.');
@@ -61,15 +65,15 @@ async function add_new_menu(event) {
 async function change_menu(event) {
     event.preventDefault(); // Предотвращаем стандартное поведение формы (перезагрузку страницы)
 
-    //получаем выбранное блюдо, которое будем изменять
+    // Получаем выбранное блюдо, которое будем изменять
     const updated_value = document.getElementById('updated_menu').value;
     const data = JSON.parse(updated_value);
     const food_photo_path = data.food_photo_path;
     const id = data.id;
-    const food_name = data.food_name
+    const food_name = data.food_name;
 
     if (!id || !food_photo_path || !food_name) {
-        alert('Пожалуйста выберете блюдо, которое хотите изменить');
+        alert('Пожалуйста, выберите блюдо, которое хотите изменить');
         return;
     }
 
@@ -79,37 +83,78 @@ async function change_menu(event) {
     const mealCost_to_update = document.getElementById('updated_meal_cost').value;
     const mealType_to_update = document.getElementById('update_meal_type').value;
     const mealImage_to_update = document.getElementById('update_meal_image').files[0];
-    // Проверяем, что все поля заполнены
+
+    // Проверяем, что хотя бы одно поле заполнено
     if (!mealName_to_update && !mealDescription_to_update && !mealCost_to_update && !mealType_to_update && !mealImage_to_update) {
         alert('Пожалуйста, заполните хотя бы одно поле или выберите изображение.');
         return;
     }
 
-    // Преобразуем изображение в base64
-    const reader = new FileReader();
-    reader.onload = async function () {
-        const base64Image = reader.result.split(',')[1]; // Убираем префикс "data:image/..."
+    // Создаем объект для хранения изменений
+    const change_menu_info = {};
 
-        const menu_info = {
-            id: id,
-            food_photo_path: food_photo_path
-        }
-        // Создаем объект JSON для отправки
-        const change_menu_info = {
-            food_name: mealName_to_update,
-            food_description: mealDescription_to_update,
-            food_cost: mealCost_to_update,
-            food_type: mealType_to_update,
-            food_image: base64Image, // Изображение в формате base64
+    // Добавляем только те поля, которые были введены
+    if (mealName_to_update) change_menu_info.food_name = mealName_to_update;
+    if (mealDescription_to_update) change_menu_info.food_description = mealDescription_to_update;
+    if (mealCost_to_update) change_menu_info.food_cost = mealCost_to_update;
+    if (mealType_to_update) change_menu_info.food_type = mealType_to_update;
+
+    // Если изображение было выбрано, преобразуем его в base64
+    if (mealImage_to_update) {
+        const reader = new FileReader();
+        reader.onload = async function () {
+            const base64Image = reader.result.split(',')[1]; // Убираем префикс "data:image/..."
+            change_menu_info.food_image = base64Image; // Добавляем изображение в формате base64
+
+            // Формируем окончательный объект данных для отправки
+            const data = {
+                menu_info: {
+                    id: id,
+                    food_photo_path: food_photo_path
+                },
+                change_menu_info: change_menu_info
+            };
+
+            try {
+                // Отправляем PUT-запрос на сервер
+                const response = await fetch('http://127.0.0.1:8000/restaurant/change_menu', {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json', // Указываем, что отправляем JSON
+                    },
+                    body: JSON.stringify(data), // Преобразуем объект в JSON
+                });
+
+                // Проверяем ответ сервера
+                if (response.ok) {
+                    alert('Блюдо успешно изменено!');
+                    location.reload();
+                }  else {
+                // Если ответ — HTML, открываем его в новом окне
+                    const html = await response.text();
+                    const newWindow = window.open("about:blank", "_blank");
+                    newWindow.document.write(html);
+                    newWindow.document.close();
+                }
+            } catch (error) {
+                alert('Произошла ошибка при отправке запроса.');
+            }
         };
 
+        // Читаем файл как Data URL (base64)
+        reader.readAsDataURL(mealImage_to_update);
+    } else {
+        // Если изображение не было выбрано, отправляем данные без него
         const data = {
-            menu_info:menu_info,
+            menu_info: {
+                id: id,
+                food_photo_path: food_photo_path
+            },
             change_menu_info: change_menu_info
-        }
+        };
 
         try {
-            // Отправляем POST-запрос на сервер
+            // Отправляем PUT-запрос на сервер
             const response = await fetch('http://127.0.0.1:8000/restaurant/change_menu', {
                 method: 'PUT',
                 headers: {
@@ -120,19 +165,21 @@ async function change_menu(event) {
 
             // Проверяем ответ сервера
             if (response.ok) {
-                alert('Блюдо успешно добавлено!');
-                location.reload()
-            } else {
-                alert('Ошибка при добавлении блюда');
-            }
+                alert('Блюдо успешно изменено!');
+                location.reload();
+            }  else {
+            // Если ответ — HTML, открываем его в новом окне
+            const html = await response.text();
+            const newWindow = window.open("about:blank", "_blank");
+            newWindow.document.write(html);
+            newWindow.document.close();
+        }
         } catch (error) {
             alert('Произошла ошибка при отправке запроса.');
         }
-    };
-
-    // Читаем файл как Data URL (base64)
-    reader.readAsDataURL(mealImage_to_update);
+    }
 }
+
 
 async function delete_menu(event){
     event.preventDefault(); // Предотвращаем стандартное поведение формы (перезагрузку страницы)
@@ -164,8 +211,12 @@ async function delete_menu(event){
         if (response.ok) {
             alert('Блюдо успешно удалено!');
             location.reload()
-        } else {
-            alert('Ошибка при удалении блюда');
+        }  else {
+            // Если ответ — HTML, открываем его в новом окне
+            const html = await response.text();
+            const newWindow = window.open("about:blank", "_blank");
+            newWindow.document.write(html);
+            newWindow.document.close();
         }
     }catch (error) {
         alert('Произошла ошибка при отправке запроса.');
@@ -208,8 +259,12 @@ async function add_user(event){
         if (response.ok) {
             alert('Новый пользователь добавлен');
             location.reload()
-        } else {
-            alert('Ошибка при добавлении пользователя');
+        }  else {
+            // Если ответ — HTML, открываем его в новом окне
+            const html = await response.text();
+            const newWindow = window.open("about:blank", "_blank");
+            newWindow.document.write(html);
+            newWindow.document.close();
         }
     }catch (error) {
         alert('Произошла ошибка при отправке запроса.');
@@ -240,12 +295,13 @@ async function change_user(event){
         return;
     }
     
-    const new_data={
-        user_name: user_name_to_update,
-        password:password_to_update,
-        email_address:user_email_address_to_update,
-        user_role:user_role_to_update
-    }    
+    const new_data={}
+   
+    if(user_name_to_update)new_data.user_name=user_name_to_update;
+    if(user_email_address_to_update)new_data.email_addres=user_email_address_to_update;
+    if(password_to_update)new_data.password=password_to_update;
+    if(user_role_to_update)new_data.user_role=user_role_to_update;
+
     const json_data = {
         user_info:user_info,
         new_data:new_data
@@ -266,7 +322,11 @@ async function change_user(event){
             alert('пользователь успешно изменён!');
             location.reload()
         } else {
-            alert('Ошибка при изменении пользователя');
+            // Если ответ — HTML, открываем его в новом окне
+            const html = await response.text();
+            const newWindow = window.open("about:blank", "_blank");
+            newWindow.document.write(html);
+            newWindow.document.close();
         }
     }catch (error) {
         alert('Произошла ошибка при отправке запроса.');
@@ -300,8 +360,12 @@ async function delete_user(event){
         if (response.ok) {
             alert('Пользователь успешно удалён!');
             location.reload()
-        } else {
-            alert('Ошибка при удалении пользователя');
+        }  else {
+            // Если ответ — HTML, открываем его в новом окне
+            const html = await response.text();
+            const newWindow = window.open("about:blank", "_blank");
+            newWindow.document.write(html);
+            newWindow.document.close();
         }
     }catch (error) {
         alert('Произошла ошибка при отправке запроса.');
@@ -421,6 +485,7 @@ async function change_booking_table(event){
         alert("Заполните все поля");
         return;
     }
+
     const order_info={
         order_time: order_time,
         table_id: table_id,
@@ -435,13 +500,11 @@ async function change_booking_table(event){
         alert("Заполните хотя бы одно поле");
         return;
     }
-
-    const booking_info={
-        order_time: update_order_date,
-        guest_amount: update_guests_quantity,
-        user_id: user_id,
-        extra_wishes:update_guest_comments
-    }
+    const booking_info={}
+    if(update_order_date)booking_info.order_time=update_order_date
+    if(update_guests_quantity)booking_info.guest_amount=update_guests_quantity
+    if(user_id)booking_info.user_id=user_id
+    if(update_guest_comments) booking_info.extra_wishes=update_guest_comments
 
     const json_data={
         order_info: order_info,

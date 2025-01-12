@@ -47,17 +47,65 @@ async function book_table(event){
             body: JSON.stringify(booking_data)
         });
 
+        // Проверяем тип ответа
+        const contentType = response.headers.get('content-type');
+
         if (response.ok) {
-            //Registration successful
+            // Успешное бронирование
             alert('Ваш столик забронирован!');
             window.location.href = 'http://127.0.0.1:8000/restaurant/restaurant_main_page.html';
         } else {
-            // Handle registration errors
-            const errorData = await response.json();
-            errorMessage.textContent = errorData.message || 'Ошибка регистрации';
+            // Если ответ — HTML, открываем его в новом окне
+            const html = await response.text();
+            const newWindow = window.open("about:blank", "_blank");
+            newWindow.document.write(html);
+            newWindow.document.close();
         }
     }catch (error)
     {
         errorMessage.textContent = error;
+    }
+}
+
+
+async function loadPage(url) {
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const html = await response.text();
+        return html;
+    } catch (error) {
+        console.error("Error loading page:", error);
+        return null;
+    }
+}
+
+function executeScripts(container) {
+    const scripts = container.querySelectorAll("script");
+    scripts.forEach((script) => {
+        const newScript = document.createElement("script");
+        if (script.src) {
+            newScript.src = script.src;
+        } else {
+            newScript.textContent = script.textContent;
+        }
+        document.body.appendChild(newScript);
+    });
+}
+
+async function renderPage(url, targetElementId) {
+    const html = await loadPage(url);
+
+    if (html) {
+        const targetElement = document.getElementById(targetElementId);
+
+        if (targetElement) {
+            targetElement.innerHTML = html;
+            executeScripts(targetElement);
+        } else {
+            console.error(`Target element with id "${targetElementId}" not found.`);
+        }
     }
 }
